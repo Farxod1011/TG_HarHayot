@@ -92,28 +92,11 @@
 
     .center-box {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      min-height: 82vh; padding: 20px; text-align: center;
+      min-height: 85vh; padding: 20px; text-align: center;
     }
     .status-icon { font-size: 48px; margin-bottom: 16px; color: var(--accent-color); }
     .status-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
     .status-desc { font-size: 14px; color: var(--hint-color); line-height: 1.5; max-width: 310px; }
-
-    /* CHIROYLI TOP BREND SARLAVHASI ("Grafikni ko'rish") */
-    .app-brand-bar {
-      padding: 11px 14px;
-      background: linear-gradient(135deg, rgba(36, 129, 204, 0.16), rgba(82, 136, 193, 0.06));
-      border-bottom: 1px solid var(--border-color);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .app-brand-title {
-      font-size: 17px; font-weight: 800; letter-spacing: -0.2px;
-      color: var(--text-color); display: inline-flex; align-items: center; gap: 9px;
-    }
-    .app-brand-icon {
-      width: 30px; height: 30px; border-radius: 8px;
-      background: rgba(36, 129, 204, 0.2); color: var(--accent-color);
-      display: inline-flex; align-items: center; justify-content: center; font-size: 16px;
-    }
 
     /* YUQORI BAR VA 3-NUQTA */
     .role-banner {
@@ -219,7 +202,7 @@
       padding: 2px 7px; font-size: 11px; font-weight: 700;
     }
 
-    .tab-content { display: none; padding: 14px; min-height: calc(100vh - 140px); animation: fadeTab 0.2s ease; }
+    .tab-content { display: none; padding: 14px; min-height: calc(100vh - 105px); animation: fadeTab 0.2s ease; }
     .tab-content.active { display: block; }
 
     @keyframes fadeTab { from { opacity: 0.4; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
@@ -243,6 +226,23 @@
     }
     .submit-btn:active { background: rgba(36, 129, 204, 0.95); }
     .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* QIDIRISH OYNASI VA X (TOZALASH) TUGMASI */
+    .search-filter-bar {
+      margin-bottom: 12px; position: relative; display: flex; align-items: center;
+    }
+    .search-filter-bar input {
+      padding: 10px 38px 10px 12px; font-size: 13.5px; width: 100%;
+    }
+    .search-clear-btn {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--card-inner-bg); border: 1px solid var(--border-color);
+      color: var(--hint-color); display: none; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 11px; transition: all 0.15s;
+    }
+    .search-clear-btn.visible { display: inline-flex; }
+    .search-clear-btn:active { background: var(--danger-text); color: #fff; border-color: var(--danger-text); }
 
     /* KEKSALAR VA GRAFIK KARTOCHKALARI */
     .acc-card {
@@ -371,9 +371,6 @@
       display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
     }
 
-    .search-filter-bar { margin-bottom: 12px; display: flex; gap: 8px; }
-    .search-filter-bar input { padding: 10px 12px; font-size: 13.5px; }
-
     .empty-state { text-align: center; color: var(--hint-color); padding: 40px 10px; font-size: 14px; font-weight: 500; line-height: 1.5; }
 
     .custom-modal {
@@ -398,14 +395,6 @@
   </style>
 </head>
 <body>
-
-  <!-- YUQORI BREND SARLAVHASI -->
-  <div class="app-brand-bar">
-    <div class="app-brand-title">
-      <span class="app-brand-icon"><i class="fi fi-rr-calendar-clock"></i></span>
-      <span>Grafikni ko'rish</span>
-    </div>
-  </div>
 
   <!-- 1. YUKLANMOQDA -->
   <div id="screen-loading" class="screen active">
@@ -517,8 +506,11 @@
     <!-- 1-TAB: TABELDAGI KEKSALAR VA GRAFIK RO'YXATI -->
     <div id="tab-schedule" class="tab-content active">
       <div id="employeeSummaryBar"></div>
-      <div id="adminSearchBox" class="search-filter-bar" style="display:none;">
-        <input type="text" id="searchInput" placeholder="Qidirish (Xodim yoki keksa F.I.O)..." oninput="renderScheduleCards()">
+      <div id="searchBarWrap" class="search-filter-bar">
+        <input type="text" id="searchInput" placeholder="Qidirish (Keksa, firma yoki xodim F.I.O)..." oninput="onSearchInputChange(this)">
+        <button type="button" id="searchClearBtn" class="search-clear-btn" onclick="clearSearchInput()" title="Tozalash">
+          <i class="fi fi-rr-cross-small"></i>
+        </button>
       </div>
       <div id="list-schedule"></div>
     </div>
@@ -579,6 +571,69 @@
     let expandedCardIdx = null;
     let appRefreshTimer = null;
 
+    /* YONGA SLAYD (SWIPE) ORQALI KEYINGI MENYUGA O'TISH */
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let ignoreSwipe = false;
+    let isTouchInDrawer = false;
+
+    document.addEventListener('touchstart', function(e) {
+      const mainScreen = document.getElementById('screen-main');
+      if (!mainScreen || !mainScreen.classList.contains('active')) {
+        ignoreSwipe = true;
+        return;
+      }
+      isTouchInDrawer = Boolean(e.target.closest('.top-menu-drawer') || e.target.closest('.role-banner'));
+      if (
+        e.target.closest('.tab-bar') ||
+        e.target.closest('.custom-modal') ||
+        ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(e.target.tagName)
+      ) {
+        ignoreSwipe = true;
+        return;
+      }
+      ignoreSwipe = false;
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      if (ignoreSwipe) return;
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      const drawer = document.getElementById('topMenuDrawer');
+      const dotsBtn = document.getElementById('dotsMenuBtn');
+
+      if (drawer && drawer.classList.contains('open')) {
+        const pulledUp = (!isTouchInDrawer) && (diffY < -140 || (diffY < -85 && touchEndY < 130)) && Math.abs(diffY) > Math.abs(diffX) * 1.3;
+        if (pulledUp) {
+          drawer.classList.remove('open');
+          if (dotsBtn) dotsBtn.classList.remove('open');
+        }
+        return;
+      }
+
+      if (!isTouchInDrawer && Math.abs(diffX) > 55 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
+        switchAdjacentTab(diffX < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+
+    function switchAdjacentTab(direction) {
+      const visibleBtns = Array.from(document.querySelectorAll('.tab-bar .tab-btn')).filter(
+        btn => window.getComputedStyle(btn).display !== 'none'
+      );
+      if (!visibleBtns.length) return;
+      const currentIdx = visibleBtns.findIndex(btn => btn.classList.contains('active'));
+      if (currentIdx === -1) return;
+      const nextIdx = currentIdx + direction;
+      if (nextIdx >= 0 && nextIdx < visibleBtns.length) {
+        visibleBtns[nextIdx].click();
+      }
+    }
+
     function escHtml(str) {
       return String(str || "").replace(/\\'/g, "'").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
@@ -593,6 +648,22 @@
         .trim()
         .replace(/['`ʼʻ‘’ˈ′]/g, "'")
         .replace(/\s+/g, " ");
+    }
+
+    /* Har qanday soat yozuvini "Juma 13:00 - 15:00" formatiga keltirish */
+    function formatDayTimeDashJS(dayName, rawTimeStr) {
+      let s = String(rawTimeStr || "").trim();
+      if (!s) return "";
+      s = s.replace(/\s*dan\s*/gi, " - ").replace(/\s*gacha\s*/gi, "").trim();
+      const parts = s.split("-");
+      if (parts.length === 2) {
+        const t1 = parts[0].trim();
+        const t2 = parts[1].trim();
+        if (t1 && t2) {
+          return dayName ? `${dayName} ${t1} - ${t2}` : `${t1} - ${t2}`;
+        }
+      }
+      return dayName ? `${dayName} ${s}` : s;
     }
 
     function setRefreshSpinning(isSpinning) {
@@ -662,7 +733,6 @@
       const targetContent = document.getElementById(tabId);
       if (targetContent) targetContent.classList.add('active');
 
-      /* Hafta kunlari bo'limiga o'tilganda bugungi kunga silliq fokuslash */
       if (tabId === 'tab-days' && !isAutoRefresh) {
         setTimeout(() => {
           const todayEl = document.getElementById('today-day-section');
@@ -678,6 +748,29 @@
       const btn = document.getElementById('dotsMenuBtn');
       drawer.classList.toggle('open');
       btn.classList.toggle('open');
+    }
+
+    /* Qidirish oynasi va X (tozalash) tugmasi funksiyalari */
+    function onSearchInputChange(input) {
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) {
+        if (input.value.length > 0) clearBtn.classList.add('visible');
+        else clearBtn.classList.remove('visible');
+      }
+      renderScheduleCards();
+    }
+
+    function clearSearchInput() {
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (input) {
+        input.value = "";
+        input.focus();
+      }
+      if (clearBtn) {
+        clearBtn.classList.remove('visible');
+      }
+      renderScheduleCards();
     }
 
     function validateLettersOnly(input) {
@@ -699,7 +792,6 @@
       return null;
     }
 
-    /* Data_Hodim dan F.I.O ro'yxatini datalistga chiqarish (JSHSHIR avtomat to'ldirilmaydi!) */
     function populateHodimDatalist() {
       const dl = document.getElementById('hodimFioList');
       if (!dl) return;
@@ -819,7 +911,6 @@
       initApp();
     }
 
-    /* Ro'yxatdan o'tish: FIO va qo'lda kiritilgan JSHIR ni Data_Hodim bilan qat'iy solishtirish */
     function submitRegistration(e) {
       e.preventDefault();
       const rawFio = document.getElementById('regFio').value.trim();
@@ -865,7 +956,6 @@
       const finalFio = matchedHodim.fio;
       const finalJshir = matchedHodim.jshir || rawJshir;
 
-      /* Ushbu F.I.O va JSHIR bilan boshqa xodim avval ro'yxatdan o'tganligini tekshirish */
       const isAlreadyTaken = takenRegistrationsList.some(t => {
         const sameFio = t.normFio && t.normFio === normStrJS(finalFio);
         const sameJshir = t.jshir && finalJshir && String(t.jshir) === String(finalJshir);
@@ -911,11 +1001,9 @@
       const tabScheduleBtn = document.getElementById('tabScheduleBtn');
       const tabUsersBtn = document.getElementById('tabUsersBtn');
       const scheduleTabLabel = document.getElementById('scheduleTabLabel');
-      const adminSearchBox = document.getElementById('adminSearchBox');
 
       if (isAdminUser) {
         scheduleTabLabel.innerText = "Barcha grafiklar";
-        adminSearchBox.style.display = "flex";
         renderPendingUsers(pendingUsersList);
         tabUsersBtn.style.display = "inline-flex";
         if (pendingUsersList.length > 0) {
@@ -925,7 +1013,6 @@
         }
       } else {
         scheduleTabLabel.innerText = "Mening grafigim";
-        adminSearchBox.style.display = "none";
         tabUsersBtn.style.display = "none";
       }
 
@@ -943,7 +1030,6 @@
       }
     }
 
-    /* Mening profilim: Chiqish tugmasi faqat Adminda chiqadi, oddiy xodimda faqat O'chirish qoladi */
     function renderTopDrawer() {
       const container = document.getElementById('topDrawerContent');
       if (!currentUser || !container) return;
@@ -1012,7 +1098,6 @@
       return m ? parseFloat(m[1]) : 0;
     }
 
-    /* 1-TAB: Mening grafigim (Firma nomi o'ng tarafda, Batafsil ochilganda grafik ikki marta takrorlanmaydi, B..H-N qavslarsiz) */
     function renderScheduleCards() {
       const container = document.getElementById('list-schedule');
       const summaryBar = document.getElementById('employeeSummaryBar');
@@ -1048,7 +1133,7 @@
       }
 
       if (!filtered.length) {
-        container.innerHTML = `<div class="empty-state">Sizga biriktirilgan grafik ma'lumotlari topilmadi.</div>`;
+        container.innerHTML = `<div class="empty-state">Ma'lumot topilmadi.</div>`;
         return;
       }
 
@@ -1073,11 +1158,14 @@
         let bodyScheduleHtml = "";
 
         if (scheduledCount > 0) {
-          const itemsMarkup = r.scheduleDays.map(d => `
-            <div class="schedule-day-item">
-              <span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(d.formatted)}</span>
-            </div>
-          `).join('');
+          const itemsMarkup = r.scheduleDays.map(d => {
+            const dashLine = formatDayTimeDashJS(d.dayName, d.rawTime);
+            return `
+              <div class="schedule-day-item">
+                <span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(dashLine)}</span>
+              </div>
+            `;
+          }).join('');
           headerScheduleHtml = `<div class="schedule-list-box header-schedule-box">${itemsMarkup}</div>`;
           bodyScheduleHtml = `<div class="schedule-list-box">${itemsMarkup}</div>`;
         } else {
@@ -1140,11 +1228,10 @@
       }
     }
 
-    /* Joriy haftaning Dushanbadan Yakshanbagacha sanalarini va bugungi kun indeksini hisoblash */
     function getCurrentWeekDatesInfo() {
       const now = new Date();
-      const jsDay = now.getDay(); // 0 = Yakshanba, 1 = Dushanba ... 6 = Shanba
-      const todayDayIdx = jsDay === 0 ? 6 : (jsDay - 1); // 0 = Dushanba ... 6 = Yakshanba
+      const jsDay = now.getDay();
+      const todayDayIdx = jsDay === 0 ? 6 : (jsDay - 1);
 
       const monday = new Date(now);
       monday.setDate(now.getDate() - todayDayIdx);
@@ -1173,7 +1260,6 @@
       return { startMin, endMin };
     }
 
-    /* 2-TAB: Hafta kunlari kesimida (Katta sarlavha, (2-ta), kichik sana, bugungi kun qizil va 1px qizil ramka, Flaticon statuslar) */
     function renderByDaysView() {
       const container = document.getElementById('list-by-days');
       if (!container) return;
@@ -1192,8 +1278,9 @@
               firmaNomi: r.firmaNomi,
               birHaftada: r.birHaftada,
               birKunda: r.birKunda,
+              dayName: d.dayName,
               rawTime: d.rawTime,
-              formatted: d.formatted
+              formatted: formatDayTimeDashJS(d.dayName, d.rawTime)
             });
           }
         });
@@ -1217,7 +1304,6 @@
           return String(a.rawTime).localeCompare(String(b.rawTime));
         });
 
-        /* Shu kundagi jami soatlarni hisoblash */
         let dayHoursSum = 0;
         items.forEach(it => {
           const hVal = extractNumberFromText(it.birKunda);
@@ -1291,7 +1377,6 @@
       }
     }
 
-    /* Admin uchun: yangi ro'yxatdan o'tgan xodimlarni tasdiqlash */
     function renderPendingUsers(users) {
       pendingUsersList = users || [];
       const count = pendingUsersList.length;
