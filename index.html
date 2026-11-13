@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Grafikni ko'rish</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- Chiroyli zamonaviy shrift (Plus Jakarta Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Flaticon UIcons kutubxonasi -->
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
   <style>
     /* 1. YORUG' TEMA (LIGHT MODE) */
@@ -22,13 +20,11 @@
       --hint-color: #64748B;
       --time-pill-bg: #E6F4F4;
       --border-color: #E2E8F0;
-
       --drawer-bg: #FFFFFF;
       --modal-bg: #FFFFFF;
       --card-inner-bg: rgba(244, 246, 249, 0.72);
       --sticky-col-bg: rgba(255, 255, 255, 0.72);
       --sticky-head-bg: rgba(244, 246, 249, 0.92);
-
       --amount-bg: #E6F4F4;
       --amount-text: #1E8E8E;
       --success-text: #1E8E8E;
@@ -50,13 +46,11 @@
         --hint-color: #94A3B8;
         --time-pill-bg: #134E4A;
         --border-color: #334155;
-
         --drawer-bg: #1E293B;
         --modal-bg: #1E293B;
         --card-inner-bg: rgba(15, 23, 42, 0.58);
         --sticky-col-bg: rgba(15, 23, 42, 0.58);
         --sticky-head-bg: rgba(20, 30, 48, 0.92);
-
         --amount-bg: #134E4A;
         --amount-text: #2DD4BF;
         --success-text: #2DD4BF;
@@ -69,76 +63,33 @@
     }
 
     body.theme-dark {
-      --bg-color: #0F172A;
-      --card-bg: #1E293B;
-      --accent-color: #2DD4BF;
-      --text-color: #F8FAFC;
-      --soft-val-color: #CBD5E1;
-      --hint-color: #94A3B8;
-      --time-pill-bg: #134E4A;
-      --border-color: #334155;
-
-      --drawer-bg: #1E293B;
-      --modal-bg: #1E293B;
-      --card-inner-bg: rgba(15, 23, 42, 0.58);
-      --sticky-col-bg: rgba(15, 23, 42, 0.58);
-      --sticky-head-bg: rgba(20, 30, 48, 0.92);
-
-      --amount-bg: #134E4A;
-      --amount-text: #2DD4BF;
-      --success-text: #2DD4BF;
-      --danger-text: #FF5252;
-      --today-red: #FF5252;
-      --warning-text: #FBBF24;
-      --info-text: #2DD4BF;
-      --active-btn-text: #0F172A;
+      --bg-color: #0F172A; --card-bg: #1E293B; --accent-color: #2DD4BF; --text-color: #F8FAFC;
+      --soft-val-color: #CBD5E1; --hint-color: #94A3B8; --time-pill-bg: #134E4A; --border-color: #334155;
+      --drawer-bg: #1E293B; --modal-bg: #1E293B; --card-inner-bg: rgba(15, 23, 42, 0.58);
+      --sticky-col-bg: rgba(15, 23, 42, 0.58); --sticky-head-bg: rgba(20, 30, 48, 0.92);
+      --amount-bg: #134E4A; --amount-text: #2DD4BF; --success-text: #2DD4BF; --danger-text: #FF5252;
+      --today-red: #FF5252; --warning-text: #FBBF24; --info-text: #2DD4BF; --active-btn-text: #0F172A;
     }
 
     body.theme-light {
-      --bg-color: #F4F6F9;
-      --card-bg: #FFFFFF;
-      --accent-color: #1E8E8E;
-      --text-color: #1A202C;
-      --soft-val-color: #334155;
-      --hint-color: #64748B;
-      --time-pill-bg: #E6F4F4;
-      --border-color: #E2E8F0;
-
-      --drawer-bg: #FFFFFF;
-      --modal-bg: #FFFFFF;
-      --card-inner-bg: rgba(244, 246, 249, 0.72);
-      --sticky-col-bg: rgba(255, 255, 255, 0.72);
-      --sticky-head-bg: rgba(244, 246, 249, 0.92);
-
-      --amount-bg: #E6F4F4;
-      --amount-text: #1E8E8E;
-      --success-text: #1E8E8E;
-      --danger-text: #E53935;
-      --today-red: #E53935;
-      --warning-text: #D97706;
-      --info-text: #1E8E8E;
-      --active-btn-text: #FFFFFF;
+      --bg-color: #F4F6F9; --card-bg: #FFFFFF; --accent-color: #1E8E8E; --text-color: #1A202C;
+      --soft-val-color: #334155; --hint-color: #64748B; --time-pill-bg: #E6F4F4; --border-color: #E2E8F0;
+      --drawer-bg: #FFFFFF; --modal-bg: #FFFFFF; --card-inner-bg: rgba(244, 246, 249, 0.72);
+      --sticky-col-bg: rgba(255, 255, 255, 0.72); --sticky-head-bg: rgba(244, 246, 249, 0.92);
+      --amount-bg: #E6F4F4; --amount-text: #1E8E8E; --success-text: #1E8E8E; --danger-text: #E53935;
+      --today-red: #E53935; --warning-text: #D97706; --info-text: #1E8E8E; --active-btn-text: #FFFFFF;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; -webkit-touch-callout: none; }
-
     i.fi { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; line-height: 1; }
 
     @keyframes spinRefresh { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .spin-icon { animation: spinRefresh 0.75s linear infinite; transform-origin: center; }
 
     @keyframes hourglassFlip {
-      0% { transform: rotate(0deg); }
-      16.67% { transform: rotate(180deg); }
-      50% { transform: rotate(180deg); }
-      66.67% { transform: rotate(360deg); }
-      100% { transform: rotate(360deg); }
+      0% { transform: rotate(0deg); } 16.67% { transform: rotate(180deg); } 50% { transform: rotate(180deg); }
+      66.67% { transform: rotate(360deg); } 100% { transform: rotate(360deg); }
     }
     .hourglass-anim { display: inline-flex; animation: hourglassFlip 3s ease-in-out infinite; transform-origin: center; }
 
@@ -153,155 +104,58 @@
 
     .screen { display: none; min-height: 100vh; }
     .screen.active { display: block; }
-
-    .center-box {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      min-height: 85vh; padding: 20px; text-align: center;
-    }
+    .center-box { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 85vh; padding: 20px; text-align: center; }
     .status-icon { font-size: 48px; margin-bottom: 16px; color: var(--accent-color); }
     .status-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
     .status-desc { font-size: 14px; color: var(--hint-color); line-height: 1.5; max-width: 310px; }
 
-    /* YUQORI BAR VA 3-NUQTA */
-    .role-banner {
-      padding: 8px 12px; background: var(--time-pill-bg); border-bottom: 1px solid var(--border-color);
-      font-size: 12.5px; font-weight: 600; color: var(--accent-color); display: flex; justify-content: space-between; align-items: center;
-    }
+    .role-banner { padding: 8px 12px; background: var(--time-pill-bg); border-bottom: 1px solid var(--border-color); font-size: 12.5px; font-weight: 600; color: var(--accent-color); display: flex; justify-content: space-between; align-items: center; }
     .role-banner-left { display: inline-flex; align-items: center; gap: 7px; min-width: 0; flex: 1; }
-    .dots-btn {
-      background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color);
-      width: 26px; height: 26px; min-width: 26px; border-radius: 6px;
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 12px; transition: all 0.2s; position: relative; flex-shrink: 0;
-    }
+    .dots-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); width: 26px; height: 26px; min-width: 26px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px; transition: all 0.2s; flex-shrink: 0; }
     .dots-btn:active, .dots-btn.open { background: var(--accent-color); color: var(--active-btn-text); border-color: var(--accent-color); }
 
-    /* KENGAYADIGAN PROFIL PANELI */
-    .top-menu-drawer {
-      display: none; background: var(--drawer-bg); border-bottom: 2px solid var(--accent-color);
-      padding: 0 14px 12px; max-height: 75vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
-    }
+    .top-menu-drawer { display: none; background: var(--drawer-bg); border-bottom: 2px solid var(--accent-color); padding: 0 14px 12px; max-height: 75vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .top-menu-drawer.open { display: block; }
+    .dir-section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--hint-color); margin: 12px 0 6px; font-weight: 700; }
 
-    .dir-section-title {
-      font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px;
-      color: var(--hint-color); margin: 12px 0 6px; font-weight: 700;
-    }
+    .collapsible-dir-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px 12px; margin-top: 10px; margin-bottom: 6px; cursor: pointer; user-select: none; }
+    .collapsible-dir-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent-color); display: inline-flex; align-items: center; gap: 7px; }
+    .collapsible-dir-arrow { font-size: 13px; color: var(--hint-color); transition: transform 0.25s ease; }
+    .collapsible-dir-bar.open .collapsible-dir-arrow { transform: rotate(180deg); color: var(--accent-color); }
+    .approved-users-collapse-wrap { display: none; }
+    .approved-users-collapse-wrap.open { display: block; }
+    .drawer-sticky-search { position: sticky; top: 0; z-index: 30; background: var(--drawer-bg); padding: 6px 0 8px; }
 
-    /* TASDIQLANGAN XODIMLAR COLLAPSIBLE BUTTON */
-    .collapsible-dir-bar {
-      display: flex; justify-content: space-between; align-items: center;
-      background: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 10px; padding: 10px 12px; margin-top: 10px; margin-bottom: 6px;
-      cursor: pointer; user-select: none; transition: all 0.2s;
-    }
-    .collapsible-dir-bar:active { border-color: var(--accent-color); }
-    .collapsible-dir-title {
-      font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
-      color: var(--accent-color); display: inline-flex; align-items: center; gap: 7px;
-    }
-    .collapsible-dir-arrow {
-      font-size: 13px; color: var(--hint-color); transition: transform 0.25s ease;
-    }
-    .collapsible-dir-bar.open .collapsible-dir-arrow {
-      transform: rotate(180deg); color: var(--accent-color);
-    }
-    .approved-users-collapse-wrap {
-      display: none;
-    }
-    .approved-users-collapse-wrap.open {
-      display: block;
-    }
-
-    /* DRAWER ICHIDAGI STICKY QIDIRUV PANELI */
-    .drawer-sticky-search {
-      position: sticky; top: 0; z-index: 30;
-      background: var(--drawer-bg); padding: 6px 0 8px;
-    }
-
-    .dir-card {
-      background: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 12px; margin-bottom: 9px; overflow: hidden;
-    }
-    .dir-card.today-red-card {
-      border: 1px solid var(--today-red) !important;
-      box-shadow: 0 2px 10px rgba(229, 57, 53, 0.12);
-    }
-    .dir-card-header {
-      padding: 10px 12px; display: flex; justify-content: space-between;
-      align-items: center; gap: 8px;
-    }
+    .dir-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 9px; overflow: hidden; }
+    .dir-card.today-red-card { border: 1px solid var(--today-red) !important; box-shadow: 0 2px 10px rgba(229, 57, 53, 0.12); }
+    .dir-card-header { padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     .dir-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
-    .dir-name {
-      font-size: 14px; font-weight: 700; color: var(--text-color);
-      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-    }
+    .dir-name { font-size: 14px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
     .dir-sub { font-size: 12px; color: var(--hint-color); line-height: 1.4; word-break: break-word; }
     .dir-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
-    .trash-icon-btn {
-      background: rgba(229, 57, 53, 0.16); border: 1px solid rgba(229, 57, 53, 0.45); color: var(--danger-text);
-      width: 28px; height: 28px; border-radius: 7px; display: inline-flex;
-      align-items: center; justify-content: center; cursor: pointer; font-size: 13px; flex-shrink: 0;
-    }
+    .trash-icon-btn { background: rgba(229, 57, 53, 0.16); border: 1px solid rgba(229, 57, 53, 0.45); color: var(--danger-text); width: 28px; height: 28px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; flex-shrink: 0; }
     .trash-icon-btn:active { background: var(--danger-text); color: #fff; }
-
-    .logout-inline-btn {
-      background: var(--time-pill-bg); border: 1px solid var(--accent-color); color: var(--accent-color);
-      height: 28px; padding: 0 10px; border-radius: 7px; display: inline-flex;
-      align-items: center; justify-content: center; gap: 5px; cursor: pointer;
-      font-size: 11.5px; font-weight: 700; flex-shrink: 0;
-    }
+    .logout-inline-btn { background: var(--time-pill-bg); border: 1px solid var(--accent-color); color: var(--accent-color); height: 28px; padding: 0 10px; border-radius: 7px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; font-size: 11.5px; font-weight: 700; flex-shrink: 0; }
     .logout-inline-btn:active { background: var(--accent-color); color: var(--active-btn-text); }
 
-    /* MAVJUD AKKAUNTLAR RO'YXATI */
-    .saved-acc-card {
-      background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px;
-      padding: 13px 14px; margin-bottom: 10px; display: flex; justify-content: space-between;
-      align-items: center; cursor: pointer; transition: all 0.2s ease;
-    }
-    .saved-acc-card:active { border-color: var(--accent-color); transform: scale(0.99); }
+    .saved-acc-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 13px 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
     .saved-acc-left { display: flex; flex-direction: column; gap: 4px; text-align: left; }
     .saved-acc-name { font-size: 15px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 7px; }
     .saved-acc-meta { font-size: 12px; color: var(--hint-color); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
-    /* TAB BAR */
-    .tab-bar {
-      display: flex; gap: 8px; padding: 10px 12px; overflow-x: auto; white-space: nowrap;
-      scroll-behavior: smooth; background: var(--bg-color); backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
-      position: sticky; top: 0; z-index: 100; scrollbar-width: none; height: 53px; align-items: center;
-    }
+    .tab-bar { display: flex; gap: 8px; padding: 10px 12px; overflow-x: auto; white-space: nowrap; scroll-behavior: smooth; background: var(--bg-color); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; scrollbar-width: none; height: 53px; align-items: center; }
     .tab-bar::-webkit-scrollbar { display: none; }
-
-    .tab-btn {
-      flex-shrink: 0; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
-      color: var(--text-color); background: var(--card-bg); border: 1px solid var(--border-color);
-      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px; transition: all 0.25s ease;
-    }
-    .tab-btn.active {
-      background: var(--accent-color); color: var(--active-btn-text); border-color: var(--accent-color);
-      font-weight: 700; box-shadow: 0 2px 8px rgba(30, 142, 142, 0.25);
-    }
-    .tab-btn.active .badge {
-      background: rgba(0, 0, 0, 0.18); color: var(--active-btn-text);
-    }
-    .tab-btn.has-requests:not(.active) {
-      background: rgba(229, 57, 53, 0.18); border-color: rgba(229, 57, 53, 0.55); color: var(--danger-text);
-    }
+    .tab-btn { flex-shrink: 0; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--text-color); background: var(--card-bg); border: 1px solid var(--border-color); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px; transition: all 0.25s ease; }
+    .tab-btn.active { background: var(--accent-color); color: var(--active-btn-text); border-color: var(--accent-color); font-weight: 700; box-shadow: 0 2px 8px rgba(30, 142, 142, 0.25); }
+    .tab-btn.active .badge { background: rgba(0, 0, 0, 0.18); color: var(--active-btn-text); }
+    .tab-btn.has-requests:not(.active) { background: rgba(229, 57, 53, 0.18); border-color: rgba(229, 57, 53, 0.55); color: var(--danger-text); }
     .tab-btn.has-requests:not(.active) .badge { background: var(--danger-text); color: #ffffff; }
-    .tab-btn.has-requests.active {
-      background: var(--danger-text); color: #ffffff; border-color: var(--danger-text);
-    }
-
-    .badge {
-      background: var(--time-pill-bg); color: var(--accent-color); border-radius: 12px;
-      padding: 2px 7px; font-size: 11px; font-weight: 700;
-    }
+    .tab-btn.has-requests.active { background: var(--danger-text); color: #ffffff; border-color: var(--danger-text); }
+    .badge { background: var(--time-pill-bg); color: var(--accent-color); border-radius: 12px; padding: 2px 7px; font-size: 11px; font-weight: 700; }
 
     .tab-content { display: none; padding: 14px; min-height: calc(100vh - 105px); animation: fadeTab 0.2s ease; }
     .tab-content.active { display: block; }
-
     @keyframes fadeTab { from { opacity: 0.4; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 
     .form-container { padding: 18px 14px; }
@@ -309,247 +163,97 @@
     .form-sub { font-size: 13px; color: var(--hint-color); margin-bottom: 18px; line-height: 1.45; }
     .form-group { margin-bottom: 13px; text-align: left; }
     label { display: block; font-size: 13px; color: var(--hint-color); margin-bottom: 5px; font-weight: 600; }
-    input, select, textarea {
-      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color);
-      background: var(--card-bg); color: var(--text-color); font-size: 14px; outline: none;
-    }
+    input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); font-size: 14px; outline: none; }
     input::placeholder, textarea::placeholder { color: var(--hint-color); opacity: 0.8; }
     input:focus, select:focus, textarea:focus { border-color: var(--accent-color); }
 
-    .submit-btn {
-      width: 100%; padding: 13px; border-radius: 10px; background: var(--accent-color);
-      color: var(--active-btn-text); border: 1px solid var(--accent-color); font-size: 15px; font-weight: 700;
-      cursor: pointer; margin-top: 10px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;
-    }
-    .submit-btn:active { opacity: 0.9; transform: scale(0.99); }
+    .submit-btn { width: 100%; padding: 13px; border-radius: 10px; background: var(--accent-color); color: var(--active-btn-text); border: 1px solid var(--accent-color); font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 10px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
     .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* MAS'UL XODIM UMUMIY STATISTIKA KARTASI */
-    .summary-banner-card {
-      background: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 12px; padding: 12px 14px; margin-bottom: 10px;
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .summary-top-row {
-      display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
-    }
-    .summary-stats-row {
-      display: flex; flex-wrap: wrap; gap: 6px; padding-top: 0; border-top: none;
-    }
+    .summary-banner-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; }
+    .summary-top-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .summary-stats-row { display: flex; flex-wrap: wrap; gap: 6px; }
 
-    /* ASOSIY SAHIFADAGI STICKY QIDIRISH PANELI */
-    .sticky-search-container {
-      position: sticky; top: 53px; z-index: 85;
-      background: var(--bg-color); padding: 4px 0 10px;
-    }
-    .search-filter-bar {
-      position: relative; display: flex; align-items: center;
-    }
-    .search-filter-bar input {
-      padding: 10px 38px 10px 12px; font-size: 13.5px; width: 100%;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    }
-    .search-clear-btn {
-      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--time-pill-bg); border: 1px solid var(--border-color);
-      color: var(--hint-color); display: none; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 11px; transition: all 0.15s;
-    }
+    .sticky-search-container { position: sticky; top: 53px; z-index: 85; background: var(--bg-color); padding: 4px 0 10px; }
+    .search-filter-bar { position: relative; display: flex; align-items: center; }
+    .search-filter-bar input { padding: 10px 38px 10px 12px; font-size: 13.5px; width: 100%; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); }
+    .search-clear-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: var(--time-pill-bg); border: 1px solid var(--border-color); color: var(--hint-color); display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 11px; }
     .search-clear-btn.visible { display: inline-flex; }
     .search-clear-btn:active { background: var(--danger-text); color: #fff; border-color: var(--danger-text); }
 
-    /* ==============================================================
-       MODERN JADVAL DIZAYNI ("Mening grafigim" / "Barcha grafiklar")
-       ============================================================== */
-    .matrix-card-shell {
-      background: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-    }
-    /* Ham vertikal, ham gorizontal skroll: tepa qator (hafta kunlari) pastga surilganda joyida qotib turadi */
-    .matrix-scroll-wrap {
-      width: 100%;
-      max-height: calc(100vh - 175px);
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      position: relative;
-    }
-    .matrix-table {
-      width: 100%; border-collapse: separate; border-spacing: 0;
-      min-width: max-content;
-    }
-    .matrix-table th, .matrix-table td {
-      border-bottom: 1px solid var(--border-color);
-      border-right: 1px solid var(--border-color);
-      padding: 10px 9px; text-align: center; vertical-align: middle;
-    }
+    /* MODERN JADVAL DIZAYNI (STICKY RO'YXAT VA SHAFFOF CHAP USTUN) */
+    .matrix-card-shell { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); }
+    .matrix-scroll-wrap { width: 100%; max-height: calc(100vh - 175px); overflow: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; position: relative; }
+    .matrix-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: max-content; }
+    .matrix-table th, .matrix-table td { border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 10px 9px; text-align: center; vertical-align: middle; }
     .matrix-table tr:last-child td { border-bottom: none; }
     .matrix-table th:last-child, .matrix-table td:last-child { border-right: none; }
 
-    /* Chap tomonda qotirilgan (Sticky) Kun yoki Asistent ustuni — barcha qatorlarda yarim-shaffof! */
+    /* Chap ustun barcha qatorlarda yarim-shaffof (orqadagi yozuv ko'rinib o'tadi) */
     .matrix-sticky-col {
       position: sticky; left: 0; z-index: 15;
       background: var(--sticky-col-bg) !important;
       backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
-      text-align: left !important;
-      min-width: 108px; max-width: 145px; font-weight: 700; font-size: 12.5px;
-      color: var(--text-color);
+      text-align: left !important; min-width: 108px; max-width: 145px;
+      font-weight: 700; font-size: 12.5px; color: var(--text-color);
     }
     /* Tepa qator (Dushanba, Seshanba...) pastga surilganda joyida qoladi, chap-o'ngga yuradi */
     .matrix-table thead th {
       background: var(--sticky-head-bg);
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      font-weight: 700; font-size: 11.5px;
-      color: var(--text-color); position: sticky; top: 0; z-index: 25;
-      transition: background 0.2s, color 0.2s;
+      font-weight: 700; font-size: 11.5px; color: var(--text-color);
+      position: sticky; top: 0; z-index: 25; transition: background 0.2s, color 0.2s;
     }
-    /* Tepa-chap burchakdagi "Asistent" / "Kun" katagi ikkala yo'nalishda ham qotirilgan */
+    /* Burchakdagi Asistent / Kun katagi ikkala yo'nalishda ham qotirilgan */
     .matrix-table thead th.matrix-sticky-col {
       top: 0; left: 0; z-index: 35;
       background: var(--sticky-col-bg) !important;
       backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     }
 
-    /* Admin hafta kuni ustiga bosganda bosilgan tugma rangiga kirishi */
-    .matrix-day-filter-th {
-      cursor: pointer; user-select: none;
-    }
-    .matrix-day-filter-th:active {
-      opacity: 0.85;
-    }
-    .matrix-table thead th.active-day-filter {
-      background: var(--accent-color) !important;
-      color: var(--active-btn-text) !important;
-      box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-    }
-    .matrix-table thead th.active-day-filter .day-sub-date {
-      color: var(--active-btn-text) !important;
-      opacity: 0.9 !important;
-    }
+    .matrix-day-filter-th { cursor: pointer; user-select: none; }
+    .matrix-table thead th.active-day-filter { background: var(--accent-color) !important; color: var(--active-btn-text) !important; }
+    .matrix-table thead th.active-day-filter .day-sub-date { color: var(--active-btn-text) !important; opacity: 0.9 !important; }
 
-    .matrix-col-header-inner {
-      display: flex; flex-direction: column; align-items: center; gap: 5px;
-      min-width: 92px; max-width: 115px; cursor: pointer; margin: 0 auto;
-    }
-    .matrix-avatar-circle {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: var(--time-pill-bg); color: var(--accent-color);
-      border: 1px solid var(--border-color);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; flex-shrink: 0;
-    }
-    .matrix-col-name {
-      font-size: 11px; font-weight: 700; color: var(--text-color);
-      line-height: 1.25; white-space: normal; word-break: break-word;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
+    .matrix-col-header-inner { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 92px; max-width: 115px; cursor: pointer; margin: 0 auto; }
+    .matrix-avatar-circle { width: 30px; height: 30px; border-radius: 50%; background: var(--time-pill-bg); color: var(--accent-color); border: 1px solid var(--border-color); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+    .matrix-col-name { font-size: 11px; font-weight: 700; color: var(--text-color); line-height: 1.25; white-space: normal; word-break: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    .matrix-emp-row-header {
-      display: flex; align-items: center; gap: 7px; cursor: pointer;
-    }
-    .matrix-emp-row-name {
-      font-size: 12px; font-weight: 700; color: var(--text-color);
-      line-height: 1.25; white-space: normal; word-break: break-word;
-    }
+    .matrix-emp-row-header { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+    .matrix-emp-row-name { font-size: 12px; font-weight: 700; color: var(--text-color); line-height: 1.25; white-space: normal; word-break: break-word; }
 
-    .matrix-time-pill {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--time-pill-bg); color: var(--accent-color);
-      border: 1px solid rgba(30, 142, 142, 0.28);
-      padding: 4px 8px; border-radius: 7px; font-size: 11px; font-weight: 700;
-      white-space: nowrap; cursor: pointer; margin: 2px 0; transition: transform 0.15s;
-    }
-    .matrix-time-pill:active { transform: scale(0.95); }
-    .matrix-empty-dash {
-      color: var(--hint-color); opacity: 0.45; font-size: 13px; font-weight: 600;
-    }
+    .matrix-time-pill { display: inline-flex; align-items: center; justify-content: center; background: var(--time-pill-bg); color: var(--accent-color); border: 1px solid rgba(30, 142, 142, 0.28); padding: 4px 8px; border-radius: 7px; font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer; margin: 2px 0; }
+    .matrix-empty-dash { color: var(--hint-color); opacity: 0.45; font-size: 13px; font-weight: 600; }
 
-    .matrix-today-row td {
-      background: rgba(229, 57, 53, 0.05);
-    }
-    .matrix-today-row td.matrix-sticky-col {
-      color: var(--today-red) !important;
-      border-left: 3px solid var(--today-red);
-    }
-    .matrix-today-col {
-      background: rgba(229, 57, 53, 0.05);
-    }
-    .matrix-today-col-head:not(.active-day-filter) {
-      color: var(--today-red) !important;
-    }
+    .matrix-today-row td { background: rgba(229, 57, 53, 0.05); }
+    .matrix-today-row td.matrix-sticky-col { color: var(--today-red) !important; border-left: 3px solid var(--today-red); }
+    .matrix-today-col { background: rgba(229, 57, 53, 0.05); }
+    .matrix-today-col-head:not(.active-day-filter) { color: var(--today-red) !important; }
 
-    /* ==============================================================
-       KEKSALAR KARTOCHKALARI (100% KENGLIK)
-       ============================================================== */
-    .acc-card {
-      background: var(--card-bg); border-radius: 12px; margin-bottom: 11px;
-      border: 1px solid var(--border-color); overflow: hidden; transition: all 0.2s ease;
-    }
-    .acc-header {
-      padding: 13px 14px; display: flex; flex-direction: column; gap: 7px; cursor: pointer;
-    }
-    .acc-top-flex {
-      display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; width: 100%;
-    }
+    /* KEKSALAR KARTOCHKALARI (100% KENGLIK) */
+    .acc-card { background: var(--card-bg); border-radius: 12px; margin-bottom: 11px; border: 1px solid var(--border-color); overflow: hidden; }
+    .acc-header { padding: 13px 14px; display: flex; flex-direction: column; gap: 7px; cursor: pointer; }
+    .acc-top-flex { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; width: 100%; }
     .acc-left { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1; }
     .acc-fio { font-size: 14.5px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; line-height: 1.35; }
     .acc-meta-row { font-size: 12px; color: var(--hint-color); font-weight: 600; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .acc-full-width-xodim { width: 100%; font-size: 12.5px; color: var(--accent-color); font-weight: 600; line-height: 1.4; word-break: break-word; }
+    .schedule-list-box { width: 100%; margin-top: 2px; display: flex; flex-direction: column; gap: 6px; }
+    .acc-card.expanded .header-schedule-box { display: none !important; }
 
-    .acc-full-width-xodim {
-      width: 100%; font-size: 12.5px; color: var(--accent-color); font-weight: 600;
-      line-height: 1.4; word-break: break-word;
-    }
-    .schedule-list-box {
-      width: 100%; margin-top: 2px; display: flex; flex-direction: column; gap: 6px;
-    }
-    .acc-card.expanded .header-schedule-box {
-      display: none !important;
-    }
-
-    .norma-pill {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: var(--time-pill-bg); color: var(--accent-color);
-      padding: 4px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 600;
-    }
-    .norma-pill.green-stat {
-      background: var(--time-pill-bg); color: var(--accent-color);
-    }
-    .norma-status-pill {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 3.5px 8px; border-radius: 7px; font-size: 11px; font-weight: 700;
-    }
+    .norma-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--time-pill-bg); color: var(--accent-color); padding: 4px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 600; }
+    .norma-status-pill { display: inline-flex; align-items: center; gap: 4px; padding: 3.5px 8px; border-radius: 7px; font-size: 11px; font-weight: 700; }
     .norma-status-pill.complete { background: var(--time-pill-bg); color: var(--accent-color); }
     .norma-status-pill.partial { background: rgba(217, 119, 6, 0.16); color: var(--warning-text); }
+    .firma-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--time-pill-bg); color: var(--accent-color); padding: 4px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
 
-    .firma-pill {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: var(--time-pill-bg); color: var(--accent-color);
-      padding: 4px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 700;
-      white-space: nowrap;
-    }
+    .schedule-day-item { width: 100%; background: var(--time-pill-bg); border-left: 4px solid var(--accent-color); padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+    .schedule-empty-item { width: 100%; font-size: 12px; color: var(--warning-text); font-weight: 600; padding-top: 2px; display: inline-flex; align-items: center; gap: 5px; }
 
-    .schedule-day-item {
-      width: 100%; background: var(--time-pill-bg); border-left: 4px solid var(--accent-color);
-      padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 700;
-      color: var(--text-color); display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
-    }
-    .schedule-empty-item {
-      width: 100%; font-size: 12px; color: var(--warning-text); font-weight: 600; padding-top: 2px;
-      display: inline-flex; align-items: center; gap: 5px;
-    }
-
-    .acc-right {
-      text-align: right; display: flex; flex-direction: column;
-      align-items: flex-end; justify-content: space-between; gap: 7px; flex-shrink: 0;
-    }
+    .acc-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 7px; flex-shrink: 0; }
     .acc-arrow { font-size: 11px; color: var(--hint-color); font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
     .acc-card.expanded .acc-arrow i { transform: rotate(180deg); }
-
-    .acc-body {
-      display: none; padding: 12px 14px 14px; border-top: 1px solid var(--border-color);
-      background: var(--card-inner-bg); font-size: 13px;
-    }
+    .acc-body { display: none; padding: 12px 14px 14px; border-top: 1px solid var(--border-color); background: var(--card-inner-bg); font-size: 13px; }
     .acc-card.expanded .acc-body { display: block; }
 
     .detail-row { margin-bottom: 8px; color: var(--soft-val-color); line-height: 1.45; display: block; word-break: break-word; }
@@ -557,51 +261,20 @@
     .detail-label { color: var(--hint-color); font-weight: 600; display: inline-flex; align-items: center; gap: 5px; margin-right: 5px; }
     .detail-val { color: var(--soft-val-color); font-weight: 600; }
 
-    /* HAFTA KUNLARI BO'LIMI SARLAVHASI VA JONLI HOLAT BELGILARI */
-    .day-group-header {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin: 16px 0 8px; padding-bottom: 5px; border-bottom: 1px solid var(--border-color);
-      flex-wrap: wrap; gap: 6px;
-    }
+    .day-group-header { display: flex; justify-content: space-between; align-items: baseline; margin: 16px 0 8px; padding-bottom: 5px; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 6px; }
     .day-group-header:first-child { margin-top: 2px; }
-    .day-group-header.today-header {
-      border-bottom-color: rgba(229, 57, 53, 0.45);
-    }
-    .day-header-left {
-      display: inline-flex; align-items: baseline; gap: 7px; flex-wrap: wrap;
-    }
-    .day-title-main {
-      font-size: 15.5px; font-weight: 800; letter-spacing: 0.3px;
-      color: var(--text-color); display: inline-flex; align-items: center; gap: 6px;
-    }
-    .day-title-main i {
-      color: var(--accent-color);
-    }
-    .day-group-header.today-header .day-title-main,
-    .day-group-header.today-header .day-title-main i {
-      color: var(--today-red) !important;
-    }
-    .day-title-date {
-      font-size: 11.5px; font-weight: 600; color: var(--hint-color);
-    }
-    .day-total-hours {
-      font-size: 11.5px; font-weight: 700; color: var(--hint-color);
-      display: inline-flex; align-items: center; gap: 4px;
-    }
+    .day-group-header.today-header { border-bottom-color: rgba(229, 57, 53, 0.45); }
+    .day-header-left { display: inline-flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
+    .day-title-main { font-size: 15.5px; font-weight: 800; letter-spacing: 0.3px; color: var(--text-color); display: inline-flex; align-items: center; gap: 6px; }
+    .day-title-main i { color: var(--accent-color); }
+    .day-group-header.today-header .day-title-main, .day-group-header.today-header .day-title-main i { color: var(--today-red) !important; }
+    .day-title-date { font-size: 11.5px; font-weight: 600; color: var(--hint-color); }
+    .day-total-hours { font-size: 11.5px; font-weight: 700; color: var(--hint-color); display: inline-flex; align-items: center; gap: 4px; }
 
-    .live-visit-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;
-    }
-    .live-visit-badge.past {
-      background: rgba(100, 116, 139, 0.18); color: var(--hint-color);
-    }
-    .live-visit-badge.now {
-      background: var(--card-bg); color: var(--accent-color); border: 1px solid var(--accent-color);
-    }
-    .live-visit-badge.upcoming {
-      background: rgba(217, 119, 6, 0.16); color: var(--warning-text);
-    }
+    .live-visit-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+    .live-visit-badge.past { background: rgba(100, 116, 139, 0.18); color: var(--hint-color); }
+    .live-visit-badge.now { background: var(--card-bg); color: var(--accent-color); border: 1px solid var(--accent-color); }
+    .live-visit-badge.upcoming { background: rgba(217, 119, 6, 0.16); color: var(--warning-text); }
 
     .status-badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
     .status-Tasdiqlangan { background: var(--time-pill-bg); color: var(--accent-color); }
@@ -609,33 +282,17 @@
     .status-Kutilmoqda { background: rgba(217, 119, 6, 0.18); color: var(--warning-text); }
 
     .action-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-    .btn-act {
-      flex: 1; min-width: 110px; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600;
-      color: #ffffff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s;
-    }
+    .btn-act { flex: 1; min-width: 110px; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #ffffff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-approve { background: #1E8E8E; border: 1px solid #1E8E8E; }
     .btn-reject { background: #E53935; border: 1px solid #E53935; }
-    .btn-act:active { transform: scale(0.98); }
-
     .empty-state { text-align: center; color: var(--hint-color); padding: 40px 10px; font-size: 14px; font-weight: 500; line-height: 1.5; }
 
-    .custom-modal {
-      display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 9999;
-      align-items: center; justify-content: center; padding: 20px;
-    }
+    .custom-modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
     .custom-modal.show { display: flex; }
-    .modal-box {
-      background: var(--modal-bg); border-radius: 16px; padding: 20px 18px; width: 100%; max-width: 360px;
-      text-align: center; box-shadow: 0 12px 30px rgba(0,0,0,0.25); border: 1px solid var(--border-color);
-      max-height: 85vh; overflow-y: auto;
-    }
+    .modal-box { background: var(--modal-bg); border-radius: 16px; padding: 20px 18px; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 12px 30px rgba(0,0,0,0.25); border: 1px solid var(--border-color); max-height: 85vh; overflow-y: auto; }
     .modal-title { font-size: 15.5px; font-weight: 800; margin-bottom: 12px; color: var(--text-color); display: flex; align-items: center; justify-content: center; gap: 6px; }
     .modal-text { font-size: 14px; font-weight: 500; margin-bottom: 18px; color: var(--text-color); line-height: 1.45; }
-    .modal-btn {
-      width: 100%; padding: 11px; border-radius: 10px; background: var(--accent-color);
-      color: var(--active-btn-text); border: 1px solid var(--accent-color); font-size: 14px; font-weight: 700; cursor: pointer;
-    }
+    .modal-btn { width: 100%; padding: 11px; border-radius: 10px; background: var(--accent-color); color: var(--active-btn-text); border: 1px solid var(--accent-color); font-size: 14px; font-weight: 700; cursor: pointer; }
     .modal-btn-cancel { background: #64748B; color: #ffffff; border: 1px solid #64748B; }
     .modal-btn-danger { background: #E53935; color: #ffffff; border: 1px solid #E53935; }
     .modal-btn-row { display: flex; gap: 8px; margin-top: 14px; }
@@ -679,17 +336,14 @@
             <input type="text" id="regFio" list="hodimFioList" required placeholder="Ro'yxatdan tanlang yoki yozing" oninput="validateLettersOnly(this)">
             <datalist id="hodimFioList"></datalist>
           </div>
-
           <div class="form-group">
             <label>JSHIR (14 xonali shaxsiy raqam) *</label>
             <input type="tel" id="regJshir" inputmode="numeric" maxlength="14" required placeholder="14 xonali JSHIR raqamingizni kiriting" oninput="validateJshirInput(this)">
           </div>
-
           <div class="form-group">
             <label>Telefon raqamingiz *</label>
             <input type="tel" id="regPhone" inputmode="tel" required placeholder="998901234567 yoki 901234567" oninput="validatePhoneInput(this)">
           </div>
-
           <button type="submit" class="submit-btn" id="regBtn">
             <i class="fi fi-rr-check"></i> Ro'yxatdan o'tish
           </button>
@@ -744,7 +398,7 @@
       <div id="topDrawerContent"></div>
     </div>
 
-    <!-- MENYULAR PANELI: Xodimlar so'rovi faqat so'rov kelganda 1-bo'lib qizarib chiqadi -->
+    <!-- MENYULAR PANELI -->
     <div class="tab-bar">
       <button class="tab-btn has-requests" id="tabUsersBtn" style="display:none;" onclick="openTab('tab-users', this)">
         <i class="fi fi-rr-users-alt"></i> <span>Xodimlar so'rovi</span> <span class="badge" id="b-users">0</span>
@@ -760,7 +414,7 @@
       </button>
     </div>
 
-    <!-- 1-TAB (FAQAT SO'ROV BOR PAYTDA): XODIMLAR SO'ROVI -->
+    <!-- 1-TAB: XODIMLAR SO'ROVI -->
     <div id="tab-users" class="tab-content">
       <div id="list-users"></div>
     </div>
@@ -784,7 +438,7 @@
       <div id="list-by-days"></div>
     </div>
 
-    <!-- 4-TAB: KEKSALAR RO'YXATI (KARTOCHKALAR VA QIDIRUV) -->
+    <!-- 4-TAB: KEKSALAR RO'YXATI -->
     <div id="tab-keksalar" class="tab-content">
       <div id="employeeSummaryBar"></div>
       <div class="sticky-search-container">
@@ -816,7 +470,7 @@
     </div>
   </div>
 
-  <!-- MODAL: YO'Q / HA TASDIQLASH OYNASI -->
+  <!-- MODAL: TASDIQLASH OYNASI -->
   <div id="confirmModal" class="custom-modal">
     <div class="modal-box">
       <div class="modal-title"><i class="fi fi-rr-exclamation" style="color:var(--warning-text)"></i> Tasdiqlash</div>
@@ -832,22 +486,14 @@
     const tg = window.Telegram?.WebApp;
     if (tg) tg.expand();
 
-    /* Telegram kunduzgi / tungi rejimini aniqlash */
     function applyTelegramColorScheme() {
       if (tg && tg.colorScheme) {
-        if (tg.colorScheme === 'dark') {
-          document.body.classList.add('theme-dark');
-          document.body.classList.remove('theme-light');
-        } else {
-          document.body.classList.add('theme-light');
-          document.body.classList.remove('theme-dark');
-        }
+        document.body.classList.toggle('theme-dark', tg.colorScheme === 'dark');
+        document.body.classList.toggle('theme-light', tg.colorScheme !== 'dark');
       }
     }
     applyTelegramColorScheme();
-    if (tg && tg.onEvent) {
-      tg.onEvent('themeChanged', applyTelegramColorScheme);
-    }
+    if (tg && tg.onEvent) tg.onEvent('themeChanged', applyTelegramColorScheme);
 
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxiJp4QCwihqLPyqX6Pk8qsWdN-8bMO2qnjTuKZ5U7_ZvTq62g-6g644uUMCXsgkFM7GQ/exec";
     const ADMIN_CHAT_ID = "530526899";
@@ -873,11 +519,10 @@
     let expandedCardIdx = null;
     let appRefreshTimer = null;
 
-    /* 3-nuqta menyusidagi TASDIQLANGAN XODIMLAR yopiq/ochiq holati, qidiruv so'zi va Admin kun filtri */
     let isApprovedUsersExpanded = false;
     let drawerApprovedSearchQuery = "";
     let mainSearchQuery = "";
-    let selectedAdminDayFilter = null; // null yoki 0..6 (Dushanba..Yakshanba)
+    let selectedAdminDayFilter = null;
 
     /* YONGA SLAYD (SWIPE) ORQALI KEYINGI MENYUGA O'TISH */
     let touchStartX = 0;
@@ -895,15 +540,9 @@
       }
       isTouchInDrawer = Boolean(e.target.closest('.top-menu-drawer') || e.target.closest('.role-banner'));
       touchMatrixScrollEl = e.target.closest('.matrix-scroll-wrap');
-      if (touchMatrixScrollEl) {
-        matrixStartScrollLeft = touchMatrixScrollEl.scrollLeft;
-      }
+      if (touchMatrixScrollEl) matrixStartScrollLeft = touchMatrixScrollEl.scrollLeft;
 
-      if (
-        e.target.closest('.tab-bar') ||
-        e.target.closest('.custom-modal') ||
-        ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(e.target.tagName)
-      ) {
+      if (e.target.closest('.tab-bar') || e.target.closest('.custom-modal') || ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(e.target.tagName)) {
         ignoreSwipe = true;
         return;
       }
@@ -931,7 +570,6 @@
         return;
       }
 
-      /* Agar foydalanuvchi jadval ichida gorizontal skroll qilgan bo'lsa, menyu almashib ketmasin */
       if (touchMatrixScrollEl) {
         const maxScroll = touchMatrixScrollEl.scrollWidth - touchMatrixScrollEl.clientWidth;
         if (maxScroll > 5) {
@@ -946,16 +584,12 @@
     }, { passive: true });
 
     function switchAdjacentTab(direction) {
-      const visibleBtns = Array.from(document.querySelectorAll('.tab-bar .tab-btn')).filter(
-        btn => window.getComputedStyle(btn).display !== 'none'
-      );
+      const visibleBtns = Array.from(document.querySelectorAll('.tab-bar .tab-btn')).filter(btn => window.getComputedStyle(btn).display !== 'none');
       if (!visibleBtns.length) return;
       const currentIdx = visibleBtns.findIndex(btn => btn.classList.contains('active'));
       if (currentIdx === -1) return;
       const nextIdx = currentIdx + direction;
-      if (nextIdx >= 0 && nextIdx < visibleBtns.length) {
-        visibleBtns[nextIdx].click();
-      }
+      if (nextIdx >= 0 && nextIdx < visibleBtns.length) visibleBtns[nextIdx].click();
     }
 
     function escHtml(str) {
@@ -967,26 +601,22 @@
     }
 
     function normStrJS(s) {
-      return String(s || "")
-        .toLowerCase()
-        .trim()
-        .replace(/['`ʼʻ‘’ˈ′]/g, "'")
-        .replace(/\s+/g, " ");
+      return String(s || "").toLowerCase().trim().replace(/['`ʼʻ‘’ˈ′]/g, "'").replace(/\s+/g, " ");
     }
 
     function formatCleanNum(n) {
-      const rounded = Math.round((Number(n) || 0) * 100) / 100;
-      return String(rounded);
+      return String(Math.round((Number(n) || 0) * 100) / 100);
     }
 
-    /* Ism-familiyani jadval ustuni uchun qisqa formatlash (masalan: "R. Olim" yoki "A. Kleymenova") */
+    function toTitleCaseWord(w) {
+      return w ? (w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()) : "";
+    }
+
     function formatShortPersonLabel(fullName) {
       const parts = String(fullName || "").trim().split(/\s+/).filter(Boolean);
       if (!parts.length) return "-";
       if (parts.length === 1) return parts[0];
-      const surname = toTitleCaseWord(parts[0]);
-      const firstInit = parts[1].charAt(0).toUpperCase() + ".";
-      return `${firstInit} ${surname}`;
+      return `${parts[1].charAt(0).toUpperCase()}. ${toTitleCaseWord(parts[0])}`;
     }
 
     function getAvatarLetters(fullName) {
@@ -996,12 +626,6 @@
       return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
     }
 
-    function toTitleCaseWord(w) {
-      if (!w) return "";
-      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
-    }
-
-    /* Har qanday soat yozuvini "Juma 13:00 - 15:00" yoki "13:00 - 15:00" formatiga keltirish */
     function formatDayTimeDashJS(dayName, rawTimeStr) {
       let s = String(rawTimeStr || "").trim();
       if (!s) return "";
@@ -1010,18 +634,13 @@
       if (parts.length === 2) {
         const t1 = parts[0].trim();
         const t2 = parts[1].trim();
-        if (t1 && t2) {
-          return dayName ? `${dayName} ${t1} - ${t2}` : `${t1} - ${t2}`;
-        }
+        if (t1 && t2) return dayName ? `${dayName} ${t1} - ${t2}` : `${t1} - ${t2}`;
       }
       return dayName ? `${dayName} ${s}` : s;
     }
 
     function setRefreshSpinning(isSpinning) {
-      document.querySelectorAll('.refresh-icon-el').forEach(icon => {
-        if (isSpinning) icon.classList.add('spin-icon');
-        else icon.classList.remove('spin-icon');
-      });
+      document.querySelectorAll('.refresh-icon-el').forEach(icon => icon.classList.toggle('spin-icon', isSpinning));
     }
 
     function sendPost(payload) {
@@ -1056,8 +675,7 @@
 
     function askConfirm(text, onYesCallback) {
       document.getElementById('confirmModalText').innerText = text;
-      const yesBtn = document.getElementById('confirmYesBtn');
-      yesBtn.onclick = () => {
+      document.getElementById('confirmYesBtn').onclick = () => {
         closeConfirmModal();
         onYesCallback();
       };
@@ -1080,9 +698,7 @@
       if (el) {
         el.classList.add('active');
         if (!isAutoRefresh) {
-          setTimeout(() => {
-            el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-          }, 40);
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 40);
         }
       }
       const targetContent = document.getElementById(tabId);
@@ -1091,21 +707,16 @@
       if (tabId === 'tab-days' && !isAutoRefresh) {
         setTimeout(() => {
           const todayEl = document.getElementById('today-day-section');
-          if (todayEl) {
-            todayEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          if (todayEl) todayEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 120);
       }
     }
 
     function toggleTopDrawer() {
-      const drawer = document.getElementById('topMenuDrawer');
-      const btn = document.getElementById('dotsMenuBtn');
-      drawer.classList.toggle('open');
-      btn.classList.toggle('open');
+      document.getElementById('topMenuDrawer').classList.toggle('open');
+      document.getElementById('dotsMenuBtn').classList.toggle('open');
     }
 
-    /* Asosiy sahifadagi qidiruv panellarini sinxron boshqarish */
     function onMainSearchInput(inputEl) {
       mainSearchQuery = inputEl.value;
       const inp1 = document.getElementById('searchInput');
@@ -1113,11 +724,9 @@
       if (inp1 && inp1 !== inputEl) inp1.value = mainSearchQuery;
       if (inp2 && inp2 !== inputEl) inp2.value = mainSearchQuery;
 
-      const clr1 = document.getElementById('searchClearBtn');
-      const clr2 = document.getElementById('matrixSearchClearBtn');
       const hasText = mainSearchQuery.length > 0;
-      if (clr1) clr1.classList.toggle('visible', hasText);
-      if (clr2) clr2.classList.toggle('visible', hasText);
+      document.getElementById('searchClearBtn')?.classList.toggle('visible', hasText);
+      document.getElementById('matrixSearchClearBtn')?.classList.toggle('visible', hasText);
 
       renderMatrixScheduleView();
       renderScheduleCards();
@@ -1130,61 +739,41 @@
       if (inp1) inp1.value = "";
       if (inp2) inp2.value = "";
 
-      const clr1 = document.getElementById('searchClearBtn');
-      const clr2 = document.getElementById('matrixSearchClearBtn');
-      if (clr1) clr1.classList.remove('visible');
-      if (clr2) clr2.classList.remove('visible');
+      document.getElementById('searchClearBtn')?.classList.remove('visible');
+      document.getElementById('matrixSearchClearBtn')?.classList.remove('visible');
 
       renderMatrixScheduleView();
       renderScheduleCards();
     }
 
-    /* Admin jadvalida hafta kuni ustiga bosilganda bo'sh qatorlarni yashirish filtri */
     function toggleAdminDayFilter(dayIdx) {
       const wrap = document.querySelector('#matrixTableContainer .matrix-scroll-wrap');
       const prevScrollLeft = wrap ? wrap.scrollLeft : 0;
 
-      if (selectedAdminDayFilter === dayIdx) {
-        selectedAdminDayFilter = null;
-      } else {
-        selectedAdminDayFilter = dayIdx;
-      }
-
+      selectedAdminDayFilter = (selectedAdminDayFilter === dayIdx) ? null : dayIdx;
       renderMatrixScheduleView();
 
       const newWrap = document.querySelector('#matrixTableContainer .matrix-scroll-wrap');
-      if (newWrap) {
-        newWrap.scrollLeft = prevScrollLeft;
-      }
+      if (newWrap) newWrap.scrollLeft = prevScrollLeft;
     }
 
-    /* Yuqori 3-nuqta menyusidagi TASDIQLANGAN XODIMLAR ni ochish/yopish va qidirish */
     function toggleApprovedUsersCollapse() {
       isApprovedUsersExpanded = !isApprovedUsersExpanded;
-      const bar = document.getElementById('approvedUsersCollapseBar');
-      const wrap = document.getElementById('approvedUsersCollapseWrap');
-      if (bar) bar.classList.toggle('open', isApprovedUsersExpanded);
-      if (wrap) wrap.classList.toggle('open', isApprovedUsersExpanded);
+      document.getElementById('approvedUsersCollapseBar')?.classList.toggle('open', isApprovedUsersExpanded);
+      document.getElementById('approvedUsersCollapseWrap')?.classList.toggle('open', isApprovedUsersExpanded);
     }
 
     function onDrawerApprovedSearchInput(inputEl) {
       drawerApprovedSearchQuery = inputEl.value;
-      const clearBtn = document.getElementById('drawerApprovedClearBtn');
-      if (clearBtn) {
-        clearBtn.classList.toggle('visible', drawerApprovedSearchQuery.length > 0);
-      }
+      document.getElementById('drawerApprovedClearBtn')?.classList.toggle('visible', drawerApprovedSearchQuery.length > 0);
       renderApprovedUsersItemsOnly();
     }
 
     function clearDrawerApprovedSearch() {
       drawerApprovedSearchQuery = "";
       const inp = document.getElementById('drawerApprovedSearchInput');
-      const clearBtn = document.getElementById('drawerApprovedClearBtn');
-      if (inp) {
-        inp.value = "";
-        inp.focus();
-      }
-      if (clearBtn) clearBtn.classList.remove('visible');
+      if (inp) { inp.value = ""; inp.focus(); }
+      document.getElementById('drawerApprovedClearBtn')?.classList.remove('visible');
       renderApprovedUsersItemsOnly();
     }
 
@@ -1195,9 +784,7 @@
       const q = normStrJS(drawerApprovedSearchQuery);
       const filtered = approvedUsersList.filter(u => {
         if (!q) return true;
-        return normStrJS(u.tabelFio || u.fio).indexOf(q) !== -1 ||
-               normStrJS(u.jshir).indexOf(q) !== -1 ||
-               normStrJS(u.phone).indexOf(q) !== -1;
+        return normStrJS(u.tabelFio || u.fio).indexOf(q) !== -1 || normStrJS(u.jshir).indexOf(q) !== -1 || normStrJS(u.phone).indexOf(q) !== -1;
       });
 
       if (!filtered.length) {
@@ -1205,57 +792,40 @@
         return;
       }
 
-      let html = "";
-      filtered.forEach(u => {
-        html += `
-          <div class="dir-card">
-            <div class="dir-card-header">
-              <div class="dir-info">
-                <div class="dir-name">
-                  <i class="fi fi-rr-id-badge" style="color:var(--accent-color)"></i>
-                  <span>${escHtml(u.tabelFio || u.fio)}</span>
-                </div>
-                <div class="dir-sub"><i class="fi fi-rr-id-card-clip-alt"></i> ${escHtml(u.jshir || '-')} | <i class="fi fi-rr-phone-call"></i> ${escHtml(u.phone || '-')}</div>
+      listContainer.innerHTML = filtered.map(u => `
+        <div class="dir-card">
+          <div class="dir-card-header">
+            <div class="dir-info">
+              <div class="dir-name">
+                <i class="fi fi-rr-id-badge" style="color:var(--accent-color)"></i>
+                <span>${escHtml(u.tabelFio || u.fio)}</span>
               </div>
-              <div class="dir-actions">
-                <button type="button" class="trash-icon-btn" onclick="promptDeleteUser('${escJsAttr(u.chatId)}', '${escJsAttr(u.fio)}')">
-                  <i class="fi fi-rr-trash"></i>
-                </button>
-              </div>
+              <div class="dir-sub"><i class="fi fi-rr-id-card-clip-alt"></i> ${escHtml(u.jshir || '-')} | <i class="fi fi-rr-phone-call"></i> ${escHtml(u.phone || '-')}</div>
+            </div>
+            <div class="dir-actions">
+              <button type="button" class="trash-icon-btn" onclick="promptDeleteUser('${escJsAttr(u.chatId)}', '${escJsAttr(u.fio)}')">
+                <i class="fi fi-rr-trash"></i>
+              </button>
             </div>
           </div>
-        `;
-      });
-      listContainer.innerHTML = html;
+        </div>
+      `).join('');
     }
 
-    function validateLettersOnly(input) {
-      input.value = input.value.replace(/[0-9]/g, '');
-    }
-
-    function validateJshirInput(input) {
-      input.value = input.value.replace(/\D/g, '').slice(0, 14);
-    }
-
-    function validatePhoneInput(input) {
-      input.value = input.value.replace(/[^\d+]/g, '');
-    }
+    function validateLettersOnly(input) { input.value = input.value.replace(/[0-9]/g, ''); }
+    function validateJshirInput(input) { input.value = input.value.replace(/\D/g, '').slice(0, 14); }
+    function validatePhoneInput(input) { input.value = input.value.replace(/[^\d+]/g, ''); }
 
     function validateAndFormatPhone(phone) {
-      let digitsOnly = String(phone || "").replace(/\D/g, '');
-      if (digitsOnly.length === 9) return "998" + digitsOnly;
-      if (digitsOnly.length === 12 && digitsOnly.startsWith("998")) return digitsOnly;
+      let d = String(phone || "").replace(/\D/g, '');
+      if (d.length === 9) return "998" + d;
+      if (d.length === 12 && d.startsWith("998")) return d;
       return null;
     }
 
     function populateHodimDatalist() {
       const dl = document.getElementById('hodimFioList');
-      if (!dl) return;
-      let html = "";
-      hodimlarRefList.forEach(h => {
-        html += `<option value="${escHtml(h.fio)}">`;
-      });
-      dl.innerHTML = html;
+      if (dl) dl.innerHTML = hodimlarRefList.map(h => `<option value="${escHtml(h.fio)}">`).join('');
     }
 
     function initApp(switchToTabId) {
@@ -1268,16 +838,12 @@
       if (rejAdminBtn) rejAdminBtn.style.display = isOwnerAdmin ? "inline-flex" : "none";
 
       const savedAccKey = localStorage.getItem(STORAGE_ACC_KEY) || "";
-      const url = SCRIPT_URL +
-        "?action=INIT_APP&chatId=" + encodeURIComponent(chatId) +
-        "&accountKey=" + encodeURIComponent(savedAccKey) +
-        "&t=" + Date.now();
+      const url = SCRIPT_URL + "?action=INIT_APP&chatId=" + encodeURIComponent(chatId) + "&accountKey=" + encodeURIComponent(savedAccKey) + "&t=" + Date.now();
 
       fetch(url)
         .then(res => res.json())
         .then(data => {
           setRefreshSpinning(false);
-
           isAdminUser = Boolean(data.isAdmin);
           myAccountsList = data.myAccounts || [];
           pendingUsersList = data.pendingUsers || [];
@@ -1288,22 +854,15 @@
 
           populateHodimDatalist();
 
-          const isLoggedOut = localStorage.getItem(STORAGE_LOGOUT_KEY) === "1";
-
-          if (!data.user || isLoggedOut) {
+          if (!data.user || localStorage.getItem(STORAGE_LOGOUT_KEY) === "1") {
             openRegisterOrAccountsScreen();
             return;
           }
 
           currentUser = data.user;
-
-          if (currentUser.status === "Kutilmoqda") {
-            showScreen('screen-pending');
-          } else if (currentUser.status === "Rad etilgan") {
-            showScreen('screen-rejected');
-          } else if (currentUser.status === "Tasdiqlangan") {
-            setupMainScreen(switchToTabId);
-          }
+          if (currentUser.status === "Kutilmoqda") showScreen('screen-pending');
+          else if (currentUser.status === "Rad etilgan") showScreen('screen-rejected');
+          else if (currentUser.status === "Tasdiqlangan") setupMainScreen(switchToTabId);
         })
         .catch(() => {
           setRefreshSpinning(false);
@@ -1329,38 +888,27 @@
     function openRegistrationFormView() {
       document.getElementById('existingAccountsView').style.display = "none";
       document.getElementById('regFormView').style.display = "block";
-      const backBtn = document.getElementById('backToAccountsBtn');
-      backBtn.style.display = (myAccountsList && myAccountsList.length > 0 && isOwnerAdmin) ? "inline-block" : "none";
+      document.getElementById('backToAccountsBtn').style.display = (myAccountsList && myAccountsList.length > 0 && isOwnerAdmin) ? "inline-block" : "none";
     }
 
     function renderExistingAccountsList() {
       const listEl = document.getElementById('existingAccountsList');
-      if (!myAccountsList || !myAccountsList.length) {
-        listEl.innerHTML = "";
-        return;
-      }
-
-      let html = "";
-      myAccountsList.forEach((acc, idx) => {
+      if (!listEl) return;
+      listEl.innerHTML = (myAccountsList || []).map((acc, idx) => {
         const statusClass = "status-" + String(acc.status || "Tasdiqlangan").replace(/ /g, '-');
-        html += `
+        return `
           <div class="saved-acc-card" onclick="loginWithExistingAccount(${idx})">
             <div class="saved-acc-left">
-              <div class="saved-acc-name">
-                <i class="fi fi-rr-user" style="color:var(--accent-color)"></i> ${escHtml(acc.fio)}
-              </div>
+              <div class="saved-acc-name"><i class="fi fi-rr-user" style="color:var(--accent-color)"></i> ${escHtml(acc.fio)}</div>
               <div class="saved-acc-meta">
                 ${acc.jshir ? `<span><i class="fi fi-rr-id-card-clip-alt"></i> ${escHtml(acc.jshir)}</span>` : ''}
                 ${acc.phone ? `<span>| <i class="fi fi-rr-phone-call"></i> ${escHtml(acc.phone)}</span>` : ''}
               </div>
             </div>
-            <div>
-              <span class="status-badge ${statusClass}">${escHtml(acc.status || 'Tasdiqlangan')}</span>
-            </div>
+            <div><span class="status-badge ${statusClass}">${escHtml(acc.status || 'Tasdiqlangan')}</span></div>
           </div>
         `;
-      });
-      listEl.innerHTML = html;
+      }).join('');
     }
 
     function loginWithExistingAccount(idx) {
@@ -1378,37 +926,19 @@
       const rawJshir = document.getElementById('regJshir').value.replace(/\D/g, '').trim();
       const rawPhone = document.getElementById('regPhone').value.trim();
 
-      if (!rawFio) {
-        showNotice("Iltimos, F.I.O ni kiriting!");
-        return;
-      }
-
-      if (!rawJshir || rawJshir.length < 14) {
-        showNotice("JSHIR noto'g'ri kiritildi!\nIltimos, 14 xonali JSHIR raqamingizni to'liq kiriting.");
-        return;
-      }
+      if (!rawFio) { showNotice("Iltimos, F.I.O ni kiriting!"); return; }
+      if (!rawJshir || rawJshir.length < 14) { showNotice("JSHIR noto'g'ri kiritildi!\nIltimos, 14 xonali JSHIR raqamingizni to'liq kiriting."); return; }
 
       const validPhone = validateAndFormatPhone(rawPhone);
-      if (!validPhone) {
-        showNotice("Telefon raqami noto'g'ri!\nMisol: 998901234567 yoki 901234567");
-        return;
-      }
+      if (!validPhone) { showNotice("Telefon raqami noto'g'ri!\nMisol: 998901234567 yoki 901234567"); return; }
 
       const fioNorm = normStrJS(rawFio);
       const matchedByFio = hodimlarRefList.find(h => normStrJS(h.fio) === fioNorm);
       const matchedByJshir = hodimlarRefList.find(h => h.jshir && String(h.jshir) === rawJshir);
 
-      if (!matchedByFio && !matchedByJshir) {
-        showNotice("JSHIR noto'g'ri kiritildi!");
-        return;
-      }
-
-      if (matchedByFio && matchedByFio.jshir && String(matchedByFio.jshir) !== rawJshir) {
-        showNotice("JSHIR noto'g'ri kiritildi!");
-        return;
-      }
-
-      if (matchedByJshir && normStrJS(matchedByJshir.fio) !== fioNorm) {
+      if ((!matchedByFio && !matchedByJshir) ||
+          (matchedByFio && matchedByFio.jshir && String(matchedByFio.jshir) !== rawJshir) ||
+          (matchedByJshir && normStrJS(matchedByJshir.fio) !== fioNorm)) {
         showNotice("JSHIR noto'g'ri kiritildi!");
         return;
       }
@@ -1417,12 +947,7 @@
       const finalFio = matchedHodim.fio;
       const finalJshir = matchedHodim.jshir || rawJshir;
 
-      const isAlreadyTaken = takenRegistrationsList.some(t => {
-        const sameFio = t.normFio && t.normFio === normStrJS(finalFio);
-        const sameJshir = t.jshir && finalJshir && String(t.jshir) === String(finalJshir);
-        return sameFio || sameJshir;
-      });
-
+      const isAlreadyTaken = takenRegistrationsList.some(t => (t.normFio && t.normFio === normStrJS(finalFio)) || (t.jshir && finalJshir && String(t.jshir) === String(finalJshir)));
       if (isAlreadyTaken) {
         showNotice("Ushbu F.I.O va JSHIR bilan avval ro'yxatdan o'tilgan! Boshqa xodim bu ma'lumot bilan ro'yxatdan o'ta olmaydi.");
         return;
@@ -1433,7 +958,6 @@
       btn.disabled = true;
 
       const newAccKey = chatId + "|" + (finalJshir || normStrJS(finalFio));
-
       sendPost({
         action: "REGISTER_USER",
         chatId: chatId,
@@ -1466,11 +990,9 @@
 
       renderPendingUsers(pendingUsersList);
 
-      /* Xodimlar so'rovi faqat Admin uchun va faqat so'rovlar > 0 bo'lgandagina 1-menyu bo'lib qizarib chiqadi */
       if (isAdminUser) {
         matrixTabLabel.innerText = "Barcha grafiklar";
         if (matrixStickySearchWrap) matrixStickySearchWrap.style.display = "block";
-
         if (pendingUsersList.length > 0) {
           tabUsersBtn.style.display = "inline-flex";
           tabUsersBtn.classList.add('has-requests');
@@ -1491,21 +1013,15 @@
       renderByDaysView();
 
       if (switchToTabId) {
-        const targetBtn = document.querySelector(`[onclick*="${switchToTabId}"]`) || tabMatrixBtn;
-        openTab(switchToTabId, targetBtn, true);
+        openTab(switchToTabId, document.querySelector(`[onclick*="${switchToTabId}"]`) || tabMatrixBtn, true);
       } else if (activeTabId) {
-        const curBtn = document.querySelector(`[onclick*="${activeTabId}"]`) || tabMatrixBtn;
-        openTab(activeTabId, curBtn, true);
+        openTab(activeTabId, document.querySelector(`[onclick*="${activeTabId}"]`) || tabMatrixBtn, true);
       } else {
-        if (isAdminUser && pendingUsersList.length > 0) {
-          openTab('tab-users', tabUsersBtn, true);
-        } else {
-          openTab('tab-matrix', tabMatrixBtn, true);
-        }
+        if (isAdminUser && pendingUsersList.length > 0) openTab('tab-users', tabUsersBtn, true);
+        else openTab('tab-matrix', tabMatrixBtn, true);
       }
     }
 
-    /* 3-nuqta menyusi: Mening profilim + Yopiq turuvchi TASDIQLANGAN XODIMLAR (sticky qidiruv bilan) */
     function renderTopDrawer() {
       const container = document.getElementById('topDrawerContent');
       if (!currentUser || !container) return;
@@ -1513,23 +1029,11 @@
       let actionButtonsHtml = "";
       if (isOwnerAdmin) {
         if (!isAdminUser) {
-          actionButtonsHtml += `
-            <button type="button" class="trash-icon-btn" title="Akkauntni o'chirish" onclick="promptDeleteOwnAccount()">
-              <i class="fi fi-rr-trash"></i>
-            </button>
-          `;
+          actionButtonsHtml += `<button type="button" class="trash-icon-btn" title="Akkauntni o'chirish" onclick="promptDeleteOwnAccount()"><i class="fi fi-rr-trash"></i></button>`;
         }
-        actionButtonsHtml += `
-          <button type="button" class="logout-inline-btn" onclick="promptLogoutAccount()">
-            <i class="fi fi-rr-sign-out-alt"></i> Chiqish
-          </button>
-        `;
+        actionButtonsHtml += `<button type="button" class="logout-inline-btn" onclick="promptLogoutAccount()"><i class="fi fi-rr-sign-out-alt"></i> Chiqish</button>`;
       } else {
-        actionButtonsHtml = `
-          <button type="button" class="trash-icon-btn" title="Akkauntni o'chirish" onclick="promptDeleteOwnAccount()">
-            <i class="fi fi-rr-trash"></i>
-          </button>
-        `;
+        actionButtonsHtml = `<button type="button" class="trash-icon-btn" title="Akkauntni o'chirish" onclick="promptDeleteOwnAccount()"><i class="fi fi-rr-trash"></i></button>`;
       }
 
       let html = `
@@ -1537,16 +1041,11 @@
         <div class="dir-card">
           <div class="dir-card-header">
             <div class="dir-info">
-              <div class="dir-name">
-                <i class="fi fi-rr-user" style="color:var(--accent-color)"></i>
-                <span>${escHtml(currentUser.tabelFio || currentUser.fio)}</span>
-              </div>
+              <div class="dir-name"><i class="fi fi-rr-user" style="color:var(--accent-color)"></i><span>${escHtml(currentUser.tabelFio || currentUser.fio)}</span></div>
               ${currentUser.jshir ? `<div class="dir-sub"><i class="fi fi-rr-id-card-clip-alt"></i> JSHIR: <b>${escHtml(currentUser.jshir)}</b></div>` : ''}
               ${currentUser.phone ? `<div class="dir-sub"><i class="fi fi-rr-phone-call"></i> Telefon: ${escHtml(currentUser.phone)}</div>` : ''}
             </div>
-            <div class="dir-actions">
-              ${actionButtonsHtml}
-            </div>
+            <div class="dir-actions">${actionButtonsHtml}</div>
           </div>
         </div>
       `;
@@ -1555,13 +1054,9 @@
         const hasSearch = drawerApprovedSearchQuery.length > 0;
         html += `
           <div class="collapsible-dir-bar ${isApprovedUsersExpanded ? 'open' : ''}" id="approvedUsersCollapseBar" onclick="toggleApprovedUsersCollapse()">
-            <span class="collapsible-dir-title">
-              <i class="fi fi-rr-users-alt"></i>
-              <span>TASDIQLANGAN XODIMLAR (${approvedUsersList.length})</span>
-            </span>
+            <span class="collapsible-dir-title"><i class="fi fi-rr-users-alt"></i><span>TASDIQLANGAN XODIMLAR (${approvedUsersList.length})</span></span>
             <span class="collapsible-dir-arrow"><i class="fi fi-rr-angle-small-down"></i></span>
           </div>
-
           <div class="approved-users-collapse-wrap ${isApprovedUsersExpanded ? 'open' : ''}" id="approvedUsersCollapseWrap">
             <div class="drawer-sticky-search">
               <div class="search-filter-bar">
@@ -1577,9 +1072,7 @@
       }
 
       container.innerHTML = html;
-      if (isAdminUser) {
-        renderApprovedUsersItemsOnly();
-      }
+      if (isAdminUser) renderApprovedUsersItemsOnly();
     }
 
     function extractNumberFromText(str) {
@@ -1589,17 +1082,12 @@
     }
 
     function buildSummaryBannerHtml(filteredRecords) {
-      let totalNormDays = 0;
-      let totalScheduledDays = 0;
-      let totalDailyNormHours = 0;
-      let totalWeeklyNormHours = 0;
-      let totalWeeklyScheduledHours = 0;
+      let totalNormDays = 0, totalScheduledDays = 0, totalDailyNormHours = 0, totalWeeklyNormHours = 0, totalWeeklyScheduledHours = 0;
 
       filteredRecords.forEach(r => {
         const wDays = extractNumberFromText(r.birHaftada);
         const dHours = extractNumberFromText(r.birKunda);
         const schedCnt = (r.scheduleDays || []).length;
-
         totalNormDays += wDays;
         totalScheduledDays += schedCnt;
         totalDailyNormHours += dHours;
@@ -1619,12 +1107,8 @@
               </div>
             </div>
             <div class="summary-stats-row">
-              <span class="norma-pill">
-                <i class="fi fi-rr-users"></i> Jami keksalar: ${filteredRecords.length} ta
-              </span>
-              <span class="norma-pill green-stat">
-                <i class="fi fi-rr-clock"></i> 1 haftalik ko'riklar soati: ${formatCleanNum(totalWeeklyNormHours)} soat (Grafikda: ${formatCleanNum(totalWeeklyScheduledHours)} soat)
-              </span>
+              <span class="norma-pill"><i class="fi fi-rr-users"></i> Jami keksalar: ${filteredRecords.length} ta</span>
+              <span class="norma-pill green-stat"><i class="fi fi-rr-clock"></i> 1 haftalik ko'riklar soati: ${formatCleanNum(totalWeeklyNormHours)} soat (Grafikda: ${formatCleanNum(totalWeeklyScheduledHours)} soat)</span>
             </div>
           </div>
         `;
@@ -1643,26 +1127,16 @@
       return "";
     }
 
-    /* ==============================================================
-       MODERN JADVAL KO'RINISHI ("Mening grafigim" / "Barcha grafiklar")
-       ============================================================== */
+    /* MODERN JADVAL KO'RINISHI */
     function renderMatrixScheduleView() {
       const container = document.getElementById('matrixTableContainer');
       const summaryBar = document.getElementById('matrixSummaryBar');
       if (!container) return;
 
       const query = normStrJS(mainSearchQuery);
-      const filtered = allRecords.filter(r => {
-        if (!query) return true;
-        return normStrJS(r.keksaFio).indexOf(query) !== -1 ||
-               normStrJS(r.hodimFio).indexOf(query) !== -1 ||
-               normStrJS(r.firmaNomi).indexOf(query) !== -1;
-      });
+      const filtered = allRecords.filter(r => !query || normStrJS(r.keksaFio).indexOf(query) !== -1 || normStrJS(r.hodimFio).indexOf(query) !== -1 || normStrJS(r.firmaNomi).indexOf(query) !== -1);
 
-      if (summaryBar) {
-        summaryBar.innerHTML = buildSummaryBannerHtml(filtered);
-      }
-
+      if (summaryBar) summaryBar.innerHTML = buildSummaryBannerHtml(filtered);
       if (!filtered.length) {
         container.innerHTML = `<div class="empty-state">Jadval ma'lumotlari topilmadi.</div>`;
         return;
@@ -1670,17 +1144,15 @@
 
       const weekInfo = getCurrentWeekDatesInfo();
 
-      /* A) XODIM KO'RINISHI: Chapda Kunlar (Dushanba-Yakshanba), Yuqorida Keksalar o'ngga qarab */
+      /* A) XODIM JADVALI */
       if (!isAdminUser) {
         let theadCols = `<th class="matrix-sticky-col">Kun</th>`;
         filtered.forEach((r, rIdx) => {
-          const shortKeksa = formatShortPersonLabel(r.keksaFio);
-          const avatarTxt = getAvatarLetters(r.keksaFio);
           theadCols += `
             <th onclick="openKeksaDetailModal(${rIdx})">
               <div class="matrix-col-header-inner">
-                <span class="matrix-avatar-circle">${escHtml(avatarTxt)}</span>
-                <span class="matrix-col-name">${escHtml(shortKeksa)}</span>
+                <span class="matrix-avatar-circle">${escHtml(getAvatarLetters(r.keksaFio))}</span>
+                <span class="matrix-col-name">${escHtml(formatShortPersonLabel(r.keksaFio))}</span>
               </div>
             </th>
           `;
@@ -1695,72 +1167,45 @@
               <div style="font-size:10px; color:var(--hint-color); font-weight:600;">${escHtml(weekInfo.datesByIdx[dIdx] || '')}</div>
             </td>
           `;
-
           filtered.forEach((r, rIdx) => {
             const matchedDay = (r.scheduleDays || []).find(sd => sd.dayIndex === dIdx);
             if (matchedDay && matchedDay.rawTime) {
-              const cleanRange = formatDayTimeDashJS("", matchedDay.rawTime);
-              rowCells += `
-                <td>
-                  <span class="matrix-time-pill" onclick="openKeksaDetailModal(${rIdx})">${escHtml(cleanRange)}</span>
-                </td>
-              `;
+              rowCells += `<td><span class="matrix-time-pill" onclick="openKeksaDetailModal(${rIdx})">${escHtml(formatDayTimeDashJS("", matchedDay.rawTime))}</span></td>`;
             } else {
               rowCells += `<td><span class="matrix-empty-dash">—</span></td>`;
             }
           });
-
           tbodyRows += `<tr class="${isToday ? 'matrix-today-row' : ''}">${rowCells}</tr>`;
         });
 
-        container.innerHTML = `
-          <div class="matrix-card-shell">
-            <div class="matrix-scroll-wrap">
-              <table class="matrix-table">
-                <thead><tr>${theadCols}</tr></thead>
-                <tbody>${tbodyRows}</tbody>
-              </table>
-            </div>
-          </div>
-        `;
+        container.innerHTML = `<div class="matrix-card-shell"><div class="matrix-scroll-wrap"><table class="matrix-table"><thead><tr>${theadCols}</tr></thead><tbody>${tbodyRows}</tbody></table></div></div>`;
         return;
       }
 
-      /* B) ADMIN KO'RINISHI: Chapda pastga qarab Asistentlar (Xodimlar), Yuqorida Hafta kunlari (bosilganda filtrlanadi) */
+      /* B) ADMIN JADVALI (Hafta kuni bosilganda bo'sh qatorlarni yashiradi va kun katagi tugma rangida yonadi) */
       const empMap = new Map();
       filtered.forEach(r => {
         const key = r.normHodimFio || normStrJS(r.hodimFio);
         if (!key) return;
         if (!empMap.has(key)) {
-          empMap.set(key, {
-            hodimFio: r.hodimFio,
-            records: [],
-            byDay: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] }
-          });
+          empMap.set(key, { hodimFio: r.hodimFio, records: [], byDay: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] } });
         }
         const entry = empMap.get(key);
         entry.records.push(r);
         (r.scheduleDays || []).forEach(sd => {
           if (entry.byDay[sd.dayIndex]) {
             entry.byDay[sd.dayIndex].push({
-              keksaFio: r.keksaFio,
-              firmaNomi: r.firmaNomi,
-              xizmatTuri: r.xizmatTuri,
-              birHaftada: r.birHaftada,
-              birKunda: r.birKunda,
-              rawTime: formatDayTimeDashJS("", sd.rawTime)
+              keksaFio: r.keksaFio, firmaNomi: r.firmaNomi, xizmatTuri: r.xizmatTuri,
+              birHaftada: r.birHaftada, birKunda: r.birKunda, rawTime: formatDayTimeDashJS("", sd.rawTime)
             });
           }
         });
       });
 
       let empEntries = Array.from(empMap.values()).sort((a, b) => a.hodimFio.localeCompare(b.hodimFio));
-
-      /* Agar Admin hafta kunini bosgan bo'lsa, o'sha kuni bo'sh bo'lgan barcha qatorlarni yashiramiz */
       if (selectedAdminDayFilter !== null) {
         empEntries = empEntries.filter(emp => (emp.byDay[selectedAdminDayFilter] || []).length > 0);
       }
-
       window._adminMatrixEmpEntries = empEntries;
 
       let theadHtml = `<th class="matrix-sticky-col" onclick="if(selectedAdminDayFilter!==null){toggleAdminDayFilter(selectedAdminDayFilter);}" style="cursor:pointer;">Asistent</th>`;
@@ -1778,35 +1223,23 @@
       let tbodyHtml = "";
       if (!empEntries.length) {
         const selDayName = selectedAdminDayFilter !== null ? DAY_NAMES[selectedAdminDayFilter] : "";
-        tbodyHtml = `
-          <tr>
-            <td colspan="8" style="padding:30px 14px; text-align:center; color:var(--hint-color); font-weight:600;">
-              ${selDayName ? `«${escHtml(selDayName)}» kunida belgilangan ko'riklar yo'q. Barcha qatorlarni qaytarish uchun ustiga yana bosing.` : "Ma'lumot topilmadi"}
-            </td>
-          </tr>
-        `;
+        tbodyHtml = `<tr><td colspan="8" style="padding:30px 14px; text-align:center; color:var(--hint-color); font-weight:600;">${selDayName ? `«${escHtml(selDayName)}» kunida belgilangan ko'riklar yo'q. Filtrni yechish uchun ustiga yana bosing.` : "Ma'lumot topilmadi"}</td></tr>`;
       } else {
         empEntries.forEach((emp, eIdx) => {
-          const avatarTxt = getAvatarLetters(emp.hodimFio);
-          const shortEmp = formatShortPersonLabel(emp.hodimFio);
-
           let cellsHtml = `
             <td class="matrix-sticky-col" onclick="openAdminEmpDayModal(${eIdx}, -1)">
               <div class="matrix-emp-row-header">
-                <span class="matrix-avatar-circle" style="width:26px; height:26px; font-size:11px;">${escHtml(avatarTxt)}</span>
+                <span class="matrix-avatar-circle" style="width:26px; height:26px; font-size:11px;">${escHtml(getAvatarLetters(emp.hodimFio))}</span>
                 <div>
-                  <div class="matrix-emp-row-name">${escHtml(shortEmp)}</div>
+                  <div class="matrix-emp-row-name">${escHtml(formatShortPersonLabel(emp.hodimFio))}</div>
                   <div style="font-size:10px; color:var(--hint-color); font-weight:600;">Keksalar: ${emp.records.length} ta</div>
                 </div>
               </div>
             </td>
           `;
-
           for (let dIdx = 0; dIdx < 7; dIdx++) {
             const isToday = (dIdx === weekInfo.todayDayIdx);
-            const visits = emp.byDay[dIdx] || [];
-            visits.sort((a, b) => String(a.rawTime).localeCompare(String(b.rawTime)));
-
+            const visits = (emp.byDay[dIdx] || []).slice().sort((a, b) => String(a.rawTime).localeCompare(String(b.rawTime)));
             if (visits.length > 0) {
               const pills = visits.map(v => `<div class="matrix-time-pill" onclick="openAdminEmpDayModal(${eIdx}, ${dIdx})">${escHtml(v.rawTime)}</div>`).join('<br>');
               cellsHtml += `<td class="${isToday ? 'matrix-today-col' : ''}">${pills}</td>`;
@@ -1814,46 +1247,23 @@
               cellsHtml += `<td class="${isToday ? 'matrix-today-col' : ''}"><span class="matrix-empty-dash">—</span></td>`;
             }
           }
-
           tbodyHtml += `<tr>${cellsHtml}</tr>`;
         });
       }
 
-      container.innerHTML = `
-        <div class="matrix-card-shell">
-          <div class="matrix-scroll-wrap">
-            <table class="matrix-table">
-              <thead><tr>${theadHtml}</tr></thead>
-              <tbody>${tbodyHtml}</tbody>
-            </table>
-          </div>
-        </div>
-      `;
+      container.innerHTML = `<div class="matrix-card-shell"><div class="matrix-scroll-wrap"><table class="matrix-table"><thead><tr>${theadHtml}</tr></thead><tbody>${tbodyHtml}</tbody></table></div></div>`;
     }
 
     function openKeksaDetailModal(filteredIdx) {
       const query = normStrJS(mainSearchQuery);
-      const filtered = allRecords.filter(r => {
-        if (!query) return true;
-        return normStrJS(r.keksaFio).indexOf(query) !== -1 ||
-               normStrJS(r.hodimFio).indexOf(query) !== -1 ||
-               normStrJS(r.firmaNomi).indexOf(query) !== -1;
-      });
+      const filtered = allRecords.filter(r => !query || normStrJS(r.keksaFio).indexOf(query) !== -1 || normStrJS(r.hodimFio).indexOf(query) !== -1 || normStrJS(r.firmaNomi).indexOf(query) !== -1);
       const r = filtered[filteredIdx];
       if (!r) return;
 
       document.getElementById('cellDetailTitle').innerHTML = `<i class="fi fi-rr-user" style="color:var(--accent-color)"></i> <span>${escHtml(r.keksaFio)}</span>`;
-
-      let schedHtml = "";
-      if (r.scheduleDays && r.scheduleDays.length > 0) {
-        schedHtml = r.scheduleDays.map(d => `
-          <div class="schedule-day-item" style="margin-top:5px;">
-            <span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(formatDayTimeDashJS(d.dayName, d.rawTime))}</span>
-          </div>
-        `).join('');
-      } else {
-        schedHtml = `<div class="schedule-empty-item">Hafta kunlariga soat kiritilmagan</div>`;
-      }
+      const schedHtml = (r.scheduleDays && r.scheduleDays.length > 0)
+        ? r.scheduleDays.map(d => `<div class="schedule-day-item" style="margin-top:5px;"><span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(formatDayTimeDashJS(d.dayName, d.rawTime))}</span></div>`).join('')
+        : `<div class="schedule-empty-item">Hafta kunlariga soat kiritilmagan</div>`;
 
       document.getElementById('cellDetailBody').innerHTML = `
         <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-building"></i> Firma nomi:</span> <span class="detail-val">${escHtml(r.firmaNomi || '-')}</span></div>
@@ -1865,40 +1275,33 @@
     }
 
     function openAdminEmpDayModal(empIdx, dayIdx) {
-      const entries = window._adminMatrixEmpEntries || [];
-      const emp = entries[empIdx];
+      const emp = (window._adminMatrixEmpEntries || [])[empIdx];
       if (!emp) return;
 
       if (dayIdx === -1) {
         document.getElementById('cellDetailTitle').innerHTML = `<i class="fi fi-rr-id-badge" style="color:var(--accent-color)"></i> <span>${escHtml(emp.hodimFio)}</span>`;
-        const rows = emp.records.map((r, i) => `
+        document.getElementById('cellDetailBody').innerHTML = emp.records.map((r, i) => `
           <div style="padding:7px 0; border-bottom:1px dashed var(--border-color);">
             <div style="font-weight:700; color:var(--text-color);">${i + 1}. ${escHtml(r.keksaFio)}</div>
             <div style="font-size:12px; color:var(--hint-color);">Me'yor: ${escHtml(r.birHaftada || '-')} / ${escHtml(r.birKunda || '-')} | ${escHtml(r.firmaNomi || '-')}</div>
           </div>
         `).join('');
-        document.getElementById('cellDetailBody').innerHTML = rows;
       } else {
         const dName = DAY_NAMES[dayIdx] || "";
         const visits = emp.byDay[dayIdx] || [];
         document.getElementById('cellDetailTitle').innerHTML = `<i class="fi fi-rr-calendar-clock" style="color:var(--accent-color)"></i> <span>${escHtml(dName)} — ${escHtml(emp.hodimFio)}</span>`;
-        const rows = visits.map(v => `
+        document.getElementById('cellDetailBody').innerHTML = visits.map(v => `
           <div class="dir-card" style="padding:10px; margin-bottom:7px;">
             <div style="font-weight:700; color:var(--text-color); margin-bottom:4px;">👤 ${escHtml(v.keksaFio)}</div>
-            <div class="schedule-day-item" style="margin-bottom:5px;">
-              <span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(dName)} ${escHtml(v.rawTime)}</span>
-            </div>
+            <div class="schedule-day-item" style="margin-bottom:5px;"><span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(dName)} ${escHtml(v.rawTime)}</span></div>
             <div style="font-size:11.5px; color:var(--hint-color);">${escHtml(v.firmaNomi || '-')} | Me'yor: ${escHtml(v.birHaftada || '-')} / ${escHtml(v.birKunda || '-')}</div>
           </div>
         `).join('');
-        document.getElementById('cellDetailBody').innerHTML = rows;
       }
       document.getElementById('cellDetailModal').classList.add('show');
     }
 
-    /* ==============================================================
-       KEKSALAR KARTOCHKALARI (Xodim va Vaqt 100% kenglikda)
-       ============================================================== */
+    /* KEKSALAR KARTOCHKALARI */
     function renderScheduleCards() {
       const container = document.getElementById('list-schedule');
       const summaryBar = document.getElementById('employeeSummaryBar');
@@ -1906,12 +1309,7 @@
       if (!container) return;
 
       const query = normStrJS(mainSearchQuery);
-      const filtered = allRecords.filter(r => {
-        if (!query) return true;
-        return normStrJS(r.keksaFio).indexOf(query) !== -1 ||
-               normStrJS(r.hodimFio).indexOf(query) !== -1 ||
-               normStrJS(r.firmaNomi).indexOf(query) !== -1;
-      });
+      const filtered = allRecords.filter(r => !query || normStrJS(r.keksaFio).indexOf(query) !== -1 || normStrJS(r.hodimFio).indexOf(query) !== -1 || normStrJS(r.firmaNomi).indexOf(query) !== -1);
 
       if (badgeEl) badgeEl.innerText = filtered.length;
       if (summaryBar) summaryBar.innerHTML = buildSummaryBannerHtml(filtered);
@@ -1921,35 +1319,17 @@
         return;
       }
 
-      let html = "";
-      filtered.forEach((r, idx) => {
+      container.innerHTML = filtered.map((r, idx) => {
         const isExpanded = (expandedCardIdx === idx);
         const scheduledCount = (r.scheduleDays || []).length;
         const reqDays = Math.round(extractNumberFromText(r.birHaftada));
+        const normaStatusHtml = reqDays > 0
+          ? `<span class="norma-status-pill ${scheduledCount >= reqDays ? 'complete' : 'partial'}"><i class="fi ${scheduledCount >= reqDays ? 'fi-rr-check-circle' : 'fi-rr-clock-three'}"></i> ${scheduledCount}/${reqDays} kun</span>`
+          : "";
 
-        let normaStatusHtml = "";
-        if (reqDays > 0) {
-          const isComplete = scheduledCount >= reqDays;
-          normaStatusHtml = `
-            <span class="norma-status-pill ${isComplete ? 'complete' : 'partial'}">
-              <i class="fi ${isComplete ? 'fi-rr-check-circle' : 'fi-rr-clock-three'}"></i>
-              ${scheduledCount}/${reqDays} kun
-            </span>
-          `;
-        }
-
-        let headerScheduleHtml = "";
-        let bodyScheduleHtml = "";
-
+        let headerScheduleHtml = "", bodyScheduleHtml = "";
         if (scheduledCount > 0) {
-          const itemsMarkup = r.scheduleDays.map(d => {
-            const dashLine = formatDayTimeDashJS(d.dayName, d.rawTime);
-            return `
-              <div class="schedule-day-item">
-                <span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(dashLine)}</span>
-              </div>
-            `;
-          }).join('');
+          const itemsMarkup = r.scheduleDays.map(d => `<div class="schedule-day-item"><span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(formatDayTimeDashJS(d.dayName, d.rawTime))}</span></div>`).join('');
           headerScheduleHtml = `<div class="schedule-list-box header-schedule-box">${itemsMarkup}</div>`;
           bodyScheduleHtml = `<div class="schedule-list-box">${itemsMarkup}</div>`;
         } else {
@@ -1958,15 +1338,12 @@
           bodyScheduleHtml = emptyMarkup;
         }
 
-        html += `
+        return `
           <div class="acc-card ${isExpanded ? 'expanded' : ''}" id="kcard-${idx}">
             <div class="acc-header" onclick="toggleKeksaCard(${idx})">
               <div class="acc-top-flex">
                 <div class="acc-left">
-                  <div class="acc-fio">
-                    <span style="color:var(--accent-color); font-weight:800;">#${escHtml(r.num || (idx + 1))}</span>
-                    <span>${escHtml(r.keksaFio)}</span>
-                  </div>
+                  <div class="acc-fio"><span style="color:var(--accent-color); font-weight:800;">#${escHtml(r.num || (idx + 1))}</span><span>${escHtml(r.keksaFio)}</span></div>
                   <div class="acc-meta-row">
                     <span class="norma-pill"><i class="fi fi-rr-calendar"></i> Bir haftada: ${escHtml(r.birHaftada || '-')}</span>
                     <span class="norma-pill"><i class="fi fi-rr-time-fast"></i> Bir kunda: ${escHtml(r.birKunda || '-')}</span>
@@ -1981,7 +1358,6 @@
               ${isAdminUser ? `<div class="acc-full-width-xodim"><i class="fi fi-rr-user"></i> Xodim: ${escHtml(r.hodimFio)}</div>` : ''}
               ${headerScheduleHtml}
             </div>
-
             <div class="acc-body">
               <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-user"></i> Keksa F.I.O:</span> <span class="detail-val">${escHtml(r.keksaFio)}</span></div>
               <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-briefcase"></i> Xizmat turi:</span> <span class="detail-val">${escHtml(r.xizmatTuri || '-')}</span></div>
@@ -1989,16 +1365,11 @@
               <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-id-badge"></i> Mas'ul xodim:</span> <span class="detail-val">${escHtml(r.hodimFio || '-')}</span></div>
               <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-calendar-day"></i> Bir haftada:</span> <span class="detail-val">${escHtml(r.birHaftada || '-')}</span></div>
               <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-clock"></i> Bir kunda:</span> <span class="detail-val">${escHtml(r.birKunda || '-')}</span></div>
-              <div class="detail-row" style="margin-top:8px;">
-                <span class="detail-label"><i class="fi fi-rr-calendar-clock"></i> Haftalik grafik:</span>
-                ${bodyScheduleHtml}
-              </div>
+              <div class="detail-row" style="margin-top:8px;"><span class="detail-label"><i class="fi fi-rr-calendar-clock"></i> Haftalik grafik:</span>${bodyScheduleHtml}</div>
             </div>
           </div>
         `;
-      });
-
-      container.innerHTML = html;
+      }).join('');
     }
 
     function toggleKeksaCard(idx) {
@@ -2006,22 +1377,16 @@
       if (!card) return;
       const isOpen = card.classList.contains('expanded');
       document.querySelectorAll('.acc-card.expanded[id^="kcard-"]').forEach(c => c.classList.remove('expanded'));
-      if (!isOpen) {
-        card.classList.add('expanded');
-        expandedCardIdx = idx;
-      } else {
-        expandedCardIdx = null;
-      }
+      if (!isOpen) { card.classList.add('expanded'); expandedCardIdx = idx; }
+      else { expandedCardIdx = null; }
     }
 
     function getCurrentWeekDatesInfo() {
       const now = new Date();
       const jsDay = now.getDay();
       const todayDayIdx = jsDay === 0 ? 6 : (jsDay - 1);
-
       const monday = new Date(now);
       monday.setDate(now.getDate() - todayDayIdx);
-
       const pad = n => String(n).padStart(2, '0');
       const datesByIdx = {};
       for (let i = 0; i < 7; i++) {
@@ -2029,9 +1394,7 @@
         d.setDate(monday.getDate() + i);
         datesByIdx[i] = `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
       }
-
-      const nowMinutes = now.getHours() * 60 + now.getMinutes();
-      return { todayDayIdx, datesByIdx, nowMinutes };
+      return { todayDayIdx, datesByIdx, nowMinutes: now.getHours() * 60 + now.getMinutes() };
     }
 
     function parseTimeRangeMinutes(rawTimeStr) {
@@ -2041,9 +1404,7 @@
       const m1 = parts[0].trim().match(/^(\d{1,2})[:.](\d{2})/);
       const m2 = parts[1].trim().match(/^(\d{1,2})[:.](\d{2})/);
       if (!m1 || !m2) return null;
-      const startMin = parseInt(m1[1], 10) * 60 + parseInt(m1[2], 10);
-      const endMin = parseInt(m2[1], 10) * 60 + parseInt(m2[2], 10);
-      return { startMin, endMin };
+      return { startMin: parseInt(m1[1], 10) * 60 + parseInt(m1[2], 10), endMin: parseInt(m2[1], 10) * 60 + parseInt(m2[2], 10) };
     }
 
     function renderByDaysView() {
@@ -2058,62 +1419,43 @@
         (r.scheduleDays || []).forEach(d => {
           if (byDay[d.dayIndex]) {
             byDay[d.dayIndex].push({
-              keksaFio: r.keksaFio,
-              hodimFio: r.hodimFio,
-              xizmatTuri: r.xizmatTuri,
-              firmaNomi: r.firmaNomi,
-              birHaftada: r.birHaftada,
-              birKunda: r.birKunda,
-              dayName: d.dayName,
-              rawTime: d.rawTime,
-              formatted: formatDayTimeDashJS(d.dayName, d.rawTime)
+              keksaFio: r.keksaFio, hodimFio: r.hodimFio, xizmatTuri: r.xizmatTuri,
+              firmaNomi: r.firmaNomi, birHaftada: r.birHaftada, birKunda: r.birKunda,
+              dayName: d.dayName, rawTime: d.rawTime, formatted: formatDayTimeDashJS(d.dayName, d.rawTime)
             });
           }
         });
       });
 
-      let html = "";
-      let totalScheduled = 0;
-
+      let html = "", totalScheduled = 0;
       dayNamesUpper.forEach((dName, dIdx) => {
         const items = byDay[dIdx] || [];
         if (!items.length) return;
         totalScheduled += items.length;
 
         const isToday = (dIdx === weekInfo.todayDayIdx);
-        const dayDateStr = weekInfo.datesByIdx[dIdx] || "";
-
         items.sort((a, b) => {
-          const rA = parseTimeRangeMinutes(a.rawTime);
-          const rB = parseTimeRangeMinutes(b.rawTime);
-          if (rA && rB) return rA.startMin - rB.startMin;
-          return String(a.rawTime).localeCompare(String(b.rawTime));
+          const rA = parseTimeRangeMinutes(a.rawTime), rB = parseTimeRangeMinutes(b.rawTime);
+          return (rA && rB) ? (rA.startMin - rB.startMin) : String(a.rawTime).localeCompare(String(b.rawTime));
         });
 
         let dayHoursSum = 0;
         items.forEach(it => {
           const hVal = extractNumberFromText(it.birKunda);
-          if (hVal > 0) {
-            dayHoursSum += hVal;
-          } else {
+          if (hVal > 0) dayHoursSum += hVal;
+          else {
             const tr = parseTimeRangeMinutes(it.rawTime);
-            if (tr && tr.endMin > tr.startMin) {
-              dayHoursSum += (tr.endMin - tr.startMin) / 60;
-            }
+            if (tr && tr.endMin > tr.startMin) dayHoursSum += (tr.endMin - tr.startMin) / 60;
           }
         });
-        const cleanHoursStr = formatCleanNum(dayHoursSum);
 
         html += `
           <div class="day-group-header ${isToday ? 'today-header' : ''}" ${isToday ? 'id="today-day-section"' : ''}>
             <div class="day-header-left">
-              <span class="day-title-main">
-                <i class="fi fi-rr-calendar-day"></i>
-                <span>${dName} (${items.length}-ta)</span>
-              </span>
-              <span class="day-title-date">${escHtml(dayDateStr)}</span>
+              <span class="day-title-main"><i class="fi fi-rr-calendar-day"></i><span>${dName} (${items.length}-ta)</span></span>
+              <span class="day-title-date">${escHtml(weekInfo.datesByIdx[dIdx] || '')}</span>
             </div>
-            ${dayHoursSum > 0 ? `<span class="day-total-hours"><i class="fi fi-rr-clock"></i> Jami: ${cleanHoursStr} soat</span>` : ''}
+            ${dayHoursSum > 0 ? `<span class="day-total-hours"><i class="fi fi-rr-clock"></i> Jami: ${formatCleanNum(dayHoursSum)} soat</span>` : ''}
           </div>
         `;
 
@@ -2122,13 +1464,9 @@
           if (isToday) {
             const tr = parseTimeRangeMinutes(it.rawTime);
             if (tr) {
-              if (weekInfo.nowMinutes > tr.endMin) {
-                liveStatusHtml = `<span class="live-visit-badge past"><i class="fi fi-rr-check-circle"></i> Vaqti o'tdi</span>`;
-              } else if (weekInfo.nowMinutes >= tr.startMin && weekInfo.nowMinutes <= tr.endMin) {
-                liveStatusHtml = `<span class="live-visit-badge now"><i class="fi fi-rr-play-alt"></i> Hozir ko'rik vaqti</span>`;
-              } else {
-                liveStatusHtml = `<span class="live-visit-badge upcoming"><i class="fi fi-rr-clock-three"></i> Kutilmoqda</span>`;
-              }
+              if (weekInfo.nowMinutes > tr.endMin) liveStatusHtml = `<span class="live-visit-badge past"><i class="fi fi-rr-check-circle"></i> Vaqti o'tdi</span>`;
+              else if (weekInfo.nowMinutes >= tr.startMin && weekInfo.nowMinutes <= tr.endMin) liveStatusHtml = `<span class="live-visit-badge now"><i class="fi fi-rr-play-alt"></i> Hozir ko'rik vaqti</span>`;
+              else liveStatusHtml = `<span class="live-visit-badge upcoming"><i class="fi fi-rr-clock-three"></i> Kutilmoqda</span>`;
             }
           }
 
@@ -2140,12 +1478,10 @@
                 </div>
                 ${it.firmaNomi ? `<span class="firma-pill"><i class="fi fi-rr-building"></i> ${escHtml(it.firmaNomi)}</span>` : ''}
               </div>
-
               <div class="schedule-day-item" style="margin-bottom:7px; ${isToday ? 'border-left-color:var(--today-red);' : ''}">
                 <span><i class="fi fi-rr-clock-three" style="color:${isToday ? 'var(--today-red)' : 'var(--accent-color)'}; margin-right:6px;"></i>${escHtml(it.formatted)}</span>
                 ${liveStatusHtml}
               </div>
-
               <div style="font-size:12px; color:var(--hint-color); line-height:1.5;">
                 <i class="fi fi-rr-briefcase"></i> ${escHtml(it.xizmatTuri || '-')}<br>
                 <i class="fi fi-rr-calendar-clock"></i> Me'yor: <span class="detail-val">${escHtml(it.birHaftada || '-')} / ${escHtml(it.birKunda || '-')}</span>
@@ -2156,18 +1492,15 @@
         });
       });
 
-      if (totalScheduled === 0) {
-        container.innerHTML = `<div class="empty-state">Hafta kunlari bo'yicha kiritilgan soatlar hozircha mavjud emas.</div>`;
-      } else {
-        container.innerHTML = html;
-      }
+      container.innerHTML = totalScheduled === 0
+        ? `<div class="empty-state">Hafta kunlari bo'yicha kiritilgan soatlar hozircha mavjud emas.</div>`
+        : html;
     }
 
     function renderPendingUsers(users) {
       pendingUsersList = users || [];
       const count = pendingUsersList.length;
       document.getElementById('b-users').innerText = count;
-
       const container = document.getElementById('list-users');
       if (!container) return;
 
@@ -2176,44 +1509,35 @@
         return;
       }
 
-      let html = "";
-      pendingUsersList.forEach((u, uIdx) => {
-        html += `
-          <div class="acc-card expanded" id="ucard-${uIdx}">
-            <div class="acc-header" style="cursor:default;">
-              <div class="acc-left">
-                <div class="acc-fio"><i class="fi fi-rr-user" style="color:var(--accent-color)"></i> ${escHtml(u.fio)}</div>
-                <div class="acc-meta-row">
-                  <span><i class="fi fi-rr-calendar"></i> ${escHtml(u.date || '-')}</span>
-                  <span class="status-badge status-Kutilmoqda">Kutilmoqda</span>
-                </div>
-              </div>
-            </div>
-            <div class="acc-body" style="display:block;">
-              <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-id-card-clip-alt"></i> JSHIR:</span> <span class="detail-val">${escHtml(u.jshir || 'Kiritilmagan')}</span></div>
-              <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-phone-call"></i> Telefon:</span> <span class="detail-val">${escHtml(u.phone || '-')}</span></div>
-              <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-check-circle"></i> Xodimlar bazasida:</span> <span class="detail-val">${escHtml(u.tabelFio || u.fio)} (${escHtml(u.lavozim || 'Xodim')})</span></div>
-              <div class="action-row">
-                <button type="button" class="btn-act btn-approve" onclick="decideUser(${uIdx}, 'APPROVE')"><i class="fi fi-rr-check"></i> Tasdiqlash</button>
-                <button type="button" class="btn-act btn-reject" onclick="decideUser(${uIdx}, 'REJECT')"><i class="fi fi-rr-cross-small"></i> Rad etish</button>
+      container.innerHTML = pendingUsersList.map((u, uIdx) => `
+        <div class="acc-card expanded" id="ucard-${uIdx}">
+          <div class="acc-header" style="cursor:default;">
+            <div class="acc-left">
+              <div class="acc-fio"><i class="fi fi-rr-user" style="color:var(--accent-color)"></i> ${escHtml(u.fio)}</div>
+              <div class="acc-meta-row">
+                <span><i class="fi fi-rr-calendar"></i> ${escHtml(u.date || '-')}</span>
+                <span class="status-badge status-Kutilmoqda">Kutilmoqda</span>
               </div>
             </div>
           </div>
-        `;
-      });
-
-      container.innerHTML = html;
+          <div class="acc-body" style="display:block;">
+            <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-id-card-clip-alt"></i> JSHIR:</span> <span class="detail-val">${escHtml(u.jshir || 'Kiritilmagan')}</span></div>
+            <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-phone-call"></i> Telefon:</span> <span class="detail-val">${escHtml(u.phone || '-')}</span></div>
+            <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-check-circle"></i> Xodimlar bazasida:</span> <span class="detail-val">${escHtml(u.tabelFio || u.fio)} (${escHtml(u.lavozim || 'Xodim')})</span></div>
+            <div class="action-row">
+              <button type="button" class="btn-act btn-approve" onclick="decideUser(${uIdx}, 'APPROVE')"><i class="fi fi-rr-check"></i> Tasdiqlash</button>
+              <button type="button" class="btn-act btn-reject" onclick="decideUser(${uIdx}, 'REJECT')"><i class="fi fi-rr-cross-small"></i> Rad etish</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
     }
 
     function decideUser(uIdx, decision) {
       const targetUser = pendingUsersList[uIdx];
       if (!targetUser) return;
-
       const card = document.getElementById('ucard-' + uIdx);
-      if (card) {
-        card.style.opacity = "0.4";
-        card.style.pointerEvents = "none";
-      }
+      if (card) { card.style.opacity = "0.4"; card.style.pointerEvents = "none"; }
 
       sendPost({
         action: "USER_DECISION",
