@@ -25,7 +25,9 @@
 
       --drawer-bg: #FFFFFF;
       --modal-bg: #FFFFFF;
-      --card-inner-bg: #F8FAFC;
+      --card-inner-bg: rgba(244, 246, 249, 0.72);
+      --sticky-col-bg: rgba(255, 255, 255, 0.72);
+      --sticky-head-bg: rgba(244, 246, 249, 0.92);
 
       --amount-bg: #E6F4F4;
       --amount-text: #1E8E8E;
@@ -51,7 +53,9 @@
 
         --drawer-bg: #1E293B;
         --modal-bg: #1E293B;
-        --card-inner-bg: rgba(15, 23, 42, 0.55);
+        --card-inner-bg: rgba(15, 23, 42, 0.58);
+        --sticky-col-bg: rgba(15, 23, 42, 0.58);
+        --sticky-head-bg: rgba(20, 30, 48, 0.92);
 
         --amount-bg: #134E4A;
         --amount-text: #2DD4BF;
@@ -76,7 +80,9 @@
 
       --drawer-bg: #1E293B;
       --modal-bg: #1E293B;
-      --card-inner-bg: rgba(15, 23, 42, 0.55);
+      --card-inner-bg: rgba(15, 23, 42, 0.58);
+      --sticky-col-bg: rgba(15, 23, 42, 0.58);
+      --sticky-head-bg: rgba(20, 30, 48, 0.92);
 
       --amount-bg: #134E4A;
       --amount-text: #2DD4BF;
@@ -100,7 +106,9 @@
 
       --drawer-bg: #FFFFFF;
       --modal-bg: #FFFFFF;
-      --card-inner-bg: #F8FAFC;
+      --card-inner-bg: rgba(244, 246, 249, 0.72);
+      --sticky-col-bg: rgba(255, 255, 255, 0.72);
+      --sticky-head-bg: rgba(244, 246, 249, 0.92);
 
       --amount-bg: #E6F4F4;
       --amount-text: #1E8E8E;
@@ -358,9 +366,14 @@
       background: var(--card-bg); border: 1px solid var(--border-color);
       border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     }
+    /* Ham vertikal, ham gorizontal skroll: tepa qator (hafta kunlari) pastga surilganda joyida qotib turadi */
     .matrix-scroll-wrap {
-      width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+      width: 100%;
+      max-height: calc(100vh - 175px);
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
+      position: relative;
     }
     .matrix-table {
       width: 100%; border-collapse: separate; border-spacing: 0;
@@ -374,19 +387,45 @@
     .matrix-table tr:last-child td { border-bottom: none; }
     .matrix-table th:last-child, .matrix-table td:last-child { border-right: none; }
 
-    /* Chap tomonda qotirilgan (Sticky) Kun yoki Asistent ustuni */
+    /* Chap tomonda qotirilgan (Sticky) Kun yoki Asistent ustuni — barcha qatorlarda yarim-shaffof! */
     .matrix-sticky-col {
       position: sticky; left: 0; z-index: 15;
-      background: var(--card-bg); text-align: left !important;
-      min-width: 105px; max-width: 145px; font-weight: 700; font-size: 12.5px;
-      color: var(--text-color); box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+      background: var(--sticky-col-bg) !important;
+      backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+      text-align: left !important;
+      min-width: 108px; max-width: 145px; font-weight: 700; font-size: 12.5px;
+      color: var(--text-color);
     }
+    /* Tepa qator (Dushanba, Seshanba...) pastga surilganda joyida qoladi, chap-o'ngga yuradi */
     .matrix-table thead th {
-      background: var(--card-inner-bg); font-weight: 700; font-size: 11.5px;
-      color: var(--text-color); position: sticky; top: 0; z-index: 10;
+      background: var(--sticky-head-bg);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      font-weight: 700; font-size: 11.5px;
+      color: var(--text-color); position: sticky; top: 0; z-index: 25;
+      transition: background 0.2s, color 0.2s;
     }
+    /* Tepa-chap burchakdagi "Asistent" / "Kun" katagi ikkala yo'nalishda ham qotirilgan */
     .matrix-table thead th.matrix-sticky-col {
-      z-index: 25; background: var(--card-inner-bg);
+      top: 0; left: 0; z-index: 35;
+      background: var(--sticky-col-bg) !important;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+
+    /* Admin hafta kuni ustiga bosganda bosilgan tugma rangiga kirishi */
+    .matrix-day-filter-th {
+      cursor: pointer; user-select: none;
+    }
+    .matrix-day-filter-th:active {
+      opacity: 0.85;
+    }
+    .matrix-table thead th.active-day-filter {
+      background: var(--accent-color) !important;
+      color: var(--active-btn-text) !important;
+      box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+    }
+    .matrix-table thead th.active-day-filter .day-sub-date {
+      color: var(--active-btn-text) !important;
+      opacity: 0.9 !important;
     }
 
     .matrix-col-header-inner {
@@ -436,12 +475,12 @@
     .matrix-today-col {
       background: rgba(229, 57, 53, 0.05);
     }
-    .matrix-today-col-head {
+    .matrix-today-col-head:not(.active-day-filter) {
       color: var(--today-red) !important;
     }
 
     /* ==============================================================
-       KEKSALAR KARTOCHKALARI (1-RASM TUZATISHI BILAN: 100% KENGLIK)
+       KEKSALAR KARTOCHKALARI (100% KENGLIK)
        ============================================================== */
     .acc-card {
       background: var(--card-bg); border-radius: 12px; margin-bottom: 11px;
@@ -457,7 +496,6 @@
     .acc-fio { font-size: 14.5px; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; line-height: 1.35; }
     .acc-meta-row { font-size: 12px; color: var(--hint-color); font-weight: 600; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
-    /* Xodim F.I.O va Hafta kuni soati kartochkaning 100% kengligini egallaydi */
     .acc-full-width-xodim {
       width: 100%; font-size: 12.5px; color: var(--accent-color); font-weight: 600;
       line-height: 1.4; word-break: break-word;
@@ -491,7 +529,6 @@
       white-space: nowrap;
     }
 
-    /* VAQT BLOKI FONI (TIME PILL: #E6F4F4 / #134E4A, 100% KENGLIKDA) */
     .schedule-day-item {
       width: 100%; background: var(--time-pill-bg); border-left: 4px solid var(--accent-color);
       padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 700;
@@ -836,10 +873,11 @@
     let expandedCardIdx = null;
     let appRefreshTimer = null;
 
-    /* 3-nuqta menyusidagi TASDIQLANGAN XODIMLAR yopiq/ochiq holati va qidiruv so'zi */
+    /* 3-nuqta menyusidagi TASDIQLANGAN XODIMLAR yopiq/ochiq holati, qidiruv so'zi va Admin kun filtri */
     let isApprovedUsersExpanded = false;
     let drawerApprovedSearchQuery = "";
     let mainSearchQuery = "";
+    let selectedAdminDayFilter = null; // null yoki 0..6 (Dushanba..Yakshanba)
 
     /* YONGA SLAYD (SWIPE) ORQALI KEYINGI MENYUGA O'TISH */
     let touchStartX = 0;
@@ -1099,6 +1137,25 @@
 
       renderMatrixScheduleView();
       renderScheduleCards();
+    }
+
+    /* Admin jadvalida hafta kuni ustiga bosilganda bo'sh qatorlarni yashirish filtri */
+    function toggleAdminDayFilter(dayIdx) {
+      const wrap = document.querySelector('#matrixTableContainer .matrix-scroll-wrap');
+      const prevScrollLeft = wrap ? wrap.scrollLeft : 0;
+
+      if (selectedAdminDayFilter === dayIdx) {
+        selectedAdminDayFilter = null;
+      } else {
+        selectedAdminDayFilter = dayIdx;
+      }
+
+      renderMatrixScheduleView();
+
+      const newWrap = document.querySelector('#matrixTableContainer .matrix-scroll-wrap');
+      if (newWrap) {
+        newWrap.scrollLeft = prevScrollLeft;
+      }
     }
 
     /* Yuqori 3-nuqta menyusidagi TASDIQLANGAN XODIMLAR ni ochish/yopish va qidirish */
@@ -1440,7 +1497,6 @@
         const curBtn = document.querySelector(`[onclick*="${activeTabId}"]`) || tabMatrixBtn;
         openTab(activeTabId, curBtn, true);
       } else {
-        /* Agar yangi xodim so'rovi kelgan bo'lsa 1-bo'lib Xodimlar so'rovi ochiladi */
         if (isAdminUser && pendingUsersList.length > 0) {
           openTab('tab-users', tabUsersBtn, true);
         } else {
@@ -1588,7 +1644,7 @@
     }
 
     /* ==============================================================
-       2-RASM: MODERN JADVAL KO'RINISHI ("Mening grafigim" / "Barcha grafiklar")
+       MODERN JADVAL KO'RINISHI ("Mening grafigim" / "Barcha grafiklar")
        ============================================================== */
     function renderMatrixScheduleView() {
       const container = document.getElementById('matrixTableContainer');
@@ -1670,7 +1726,7 @@
         return;
       }
 
-      /* B) ADMIN KO'RINISHI: Chapda pastga qarab Asistentlar (Xodimlar), Yuqorida Hafta kunlari */
+      /* B) ADMIN KO'RINISHI: Chapda pastga qarab Asistentlar (Xodimlar), Yuqorida Hafta kunlari (bosilganda filtrlanadi) */
       const empMap = new Map();
       filtered.forEach(r => {
         const key = r.normHodimFio || normStrJS(r.hodimFio);
@@ -1698,52 +1754,70 @@
         });
       });
 
-      const empEntries = Array.from(empMap.values()).sort((a, b) => a.hodimFio.localeCompare(b.hodimFio));
+      let empEntries = Array.from(empMap.values()).sort((a, b) => a.hodimFio.localeCompare(b.hodimFio));
+
+      /* Agar Admin hafta kunini bosgan bo'lsa, o'sha kuni bo'sh bo'lgan barcha qatorlarni yashiramiz */
+      if (selectedAdminDayFilter !== null) {
+        empEntries = empEntries.filter(emp => (emp.byDay[selectedAdminDayFilter] || []).length > 0);
+      }
+
       window._adminMatrixEmpEntries = empEntries;
 
-      let theadHtml = `<th class="matrix-sticky-col">Asistent</th>`;
+      let theadHtml = `<th class="matrix-sticky-col" onclick="if(selectedAdminDayFilter!==null){toggleAdminDayFilter(selectedAdminDayFilter);}" style="cursor:pointer;">Asistent</th>`;
       DAY_NAMES.forEach((dName, dIdx) => {
         const isToday = (dIdx === weekInfo.todayDayIdx);
+        const isSelectedDay = (selectedAdminDayFilter === dIdx);
         theadHtml += `
-          <th class="${isToday ? 'matrix-today-col-head' : ''}" style="min-width:105px;">
+          <th class="matrix-day-filter-th ${isToday ? 'matrix-today-col-head' : ''} ${isSelectedDay ? 'active-day-filter' : ''}" style="min-width:105px;" onclick="toggleAdminDayFilter(${dIdx})">
             <div>${escHtml(dName)}</div>
-            <div style="font-size:10px; font-weight:600; opacity:0.8;">${escHtml(weekInfo.datesByIdx[dIdx] || '')}</div>
+            <div class="day-sub-date" style="font-size:10px; font-weight:600; opacity:0.8;">${escHtml(weekInfo.datesByIdx[dIdx] || '')}</div>
           </th>
         `;
       });
 
       let tbodyHtml = "";
-      empEntries.forEach((emp, eIdx) => {
-        const avatarTxt = getAvatarLetters(emp.hodimFio);
-        const shortEmp = formatShortPersonLabel(emp.hodimFio);
-
-        let cellsHtml = `
-          <td class="matrix-sticky-col" onclick="openAdminEmpDayModal(${eIdx}, -1)">
-            <div class="matrix-emp-row-header">
-              <span class="matrix-avatar-circle" style="width:26px; height:26px; font-size:11px;">${escHtml(avatarTxt)}</span>
-              <div>
-                <div class="matrix-emp-row-name">${escHtml(shortEmp)}</div>
-                <div style="font-size:10px; color:var(--hint-color); font-weight:600;">Keksalar: ${emp.records.length} ta</div>
-              </div>
-            </div>
-          </td>
+      if (!empEntries.length) {
+        const selDayName = selectedAdminDayFilter !== null ? DAY_NAMES[selectedAdminDayFilter] : "";
+        tbodyHtml = `
+          <tr>
+            <td colspan="8" style="padding:30px 14px; text-align:center; color:var(--hint-color); font-weight:600;">
+              ${selDayName ? `«${escHtml(selDayName)}» kunida belgilangan ko'riklar yo'q. Barcha qatorlarni qaytarish uchun ustiga yana bosing.` : "Ma'lumot topilmadi"}
+            </td>
+          </tr>
         `;
+      } else {
+        empEntries.forEach((emp, eIdx) => {
+          const avatarTxt = getAvatarLetters(emp.hodimFio);
+          const shortEmp = formatShortPersonLabel(emp.hodimFio);
 
-        for (let dIdx = 0; dIdx < 7; dIdx++) {
-          const isToday = (dIdx === weekInfo.todayDayIdx);
-          const visits = emp.byDay[dIdx] || [];
-          visits.sort((a, b) => String(a.rawTime).localeCompare(String(b.rawTime)));
+          let cellsHtml = `
+            <td class="matrix-sticky-col" onclick="openAdminEmpDayModal(${eIdx}, -1)">
+              <div class="matrix-emp-row-header">
+                <span class="matrix-avatar-circle" style="width:26px; height:26px; font-size:11px;">${escHtml(avatarTxt)}</span>
+                <div>
+                  <div class="matrix-emp-row-name">${escHtml(shortEmp)}</div>
+                  <div style="font-size:10px; color:var(--hint-color); font-weight:600;">Keksalar: ${emp.records.length} ta</div>
+                </div>
+              </div>
+            </td>
+          `;
 
-          if (visits.length > 0) {
-            const pills = visits.map(v => `<div class="matrix-time-pill" onclick="openAdminEmpDayModal(${eIdx}, ${dIdx})">${escHtml(v.rawTime)}</div>`).join('<br>');
-            cellsHtml += `<td class="${isToday ? 'matrix-today-col' : ''}">${pills}</td>`;
-          } else {
-            cellsHtml += `<td class="${isToday ? 'matrix-today-col' : ''}"><span class="matrix-empty-dash">—</span></td>`;
+          for (let dIdx = 0; dIdx < 7; dIdx++) {
+            const isToday = (dIdx === weekInfo.todayDayIdx);
+            const visits = emp.byDay[dIdx] || [];
+            visits.sort((a, b) => String(a.rawTime).localeCompare(String(b.rawTime)));
+
+            if (visits.length > 0) {
+              const pills = visits.map(v => `<div class="matrix-time-pill" onclick="openAdminEmpDayModal(${eIdx}, ${dIdx})">${escHtml(v.rawTime)}</div>`).join('<br>');
+              cellsHtml += `<td class="${isToday ? 'matrix-today-col' : ''}">${pills}</td>`;
+            } else {
+              cellsHtml += `<td class="${isToday ? 'matrix-today-col' : ''}"><span class="matrix-empty-dash">—</span></td>`;
+            }
           }
-        }
 
-        tbodyHtml += `<tr>${cellsHtml}</tr>`;
-      });
+          tbodyHtml += `<tr>${cellsHtml}</tr>`;
+        });
+      }
 
       container.innerHTML = `
         <div class="matrix-card-shell">
@@ -1823,7 +1897,7 @@
     }
 
     /* ==============================================================
-       1-RASM: KEKSALAR KARTOCHKALARI (Xodim va Vaqt 100% kenglikda)
+       KEKSALAR KARTOCHKALARI (Xodim va Vaqt 100% kenglikda)
        ============================================================== */
     function renderScheduleCards() {
       const container = document.getElementById('list-schedule');
