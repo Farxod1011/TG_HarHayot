@@ -227,6 +227,19 @@
     .submit-btn:active { background: rgba(36, 129, 204, 0.95); }
     .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+    /* MAS'UL XODIM UMUMIY STATISTIKA KARTASI */
+    .summary-banner-card {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-radius: 12px; padding: 12px 14px; margin-bottom: 12px;
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    .summary-top-row {
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;
+    }
+    .summary-stats-row {
+      display: flex; flex-wrap: wrap; gap: 6px; padding-top: 8px; border-top: 1px dashed var(--border-color);
+    }
+
     /* QIDIRISH OYNASI VA X (TOZALASH) TUGMASI */
     .search-filter-bar {
       margin-bottom: 12px; position: relative; display: flex; align-items: center;
@@ -257,7 +270,10 @@
     .norma-pill {
       display: inline-flex; align-items: center; gap: 5px;
       background: rgba(36, 129, 204, 0.14); color: var(--accent-color);
-      padding: 3.5px 8px; border-radius: 7px; font-size: 11.5px; font-weight: 600;
+      padding: 4px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 600;
+    }
+    .norma-pill.green-stat {
+      background: var(--amount-bg); color: var(--amount-text);
     }
     .norma-status-pill {
       display: inline-flex; align-items: center; gap: 4px;
@@ -364,12 +380,6 @@
     .btn-approve { background: rgba(46, 125, 50, 0.85); border: 1px solid rgba(46, 125, 50, 0.9); }
     .btn-reject { background: rgba(198, 40, 40, 0.85); border: 1px solid rgba(198, 40, 40, 0.9); }
     .btn-act:active { transform: scale(0.98); }
-
-    .summary-banner-card {
-      background: var(--card-bg); border: 1px solid var(--border-color);
-      border-radius: 12px; padding: 11px 14px; margin-bottom: 12px;
-      display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
-    }
 
     .empty-state { text-align: center; color: var(--hint-color); padding: 40px 10px; font-size: 14px; font-weight: 500; line-height: 1.5; }
 
@@ -648,6 +658,11 @@
         .trim()
         .replace(/['`ʼʻ‘’ˈ′]/g, "'")
         .replace(/\s+/g, " ");
+    }
+
+    function formatCleanNum(n) {
+      const rounded = Math.round((Number(n) || 0) * 100) / 100;
+      return String(rounded);
     }
 
     /* Har qanday soat yozuvini "Juma 13:00 - 15:00" formatiga keltirish */
@@ -1114,17 +1129,60 @@
 
       if (badgeEl) badgeEl.innerText = filtered.length;
 
+      /* Mas'ul xodim uchun Jami kun, Bir kunda jami soat va 1 haftalik jami ko'riklar soatini hisoblash */
+      let totalNormDays = 0;
+      let totalScheduledDays = 0;
+      let totalDailyNormHours = 0;
+      let totalWeeklyNormHours = 0;
+      let totalWeeklyScheduledHours = 0;
+
+      filtered.forEach(r => {
+        const wDays = extractNumberFromText(r.birHaftada);
+        const dHours = extractNumberFromText(r.birKunda);
+        const schedCnt = (r.scheduleDays || []).length;
+
+        totalNormDays += wDays;
+        totalScheduledDays += schedCnt;
+        totalDailyNormHours += dHours;
+        totalWeeklyNormHours += (wDays * dHours);
+        totalWeeklyScheduledHours += (schedCnt * dHours);
+      });
+
       if (!isAdminUser && currentUser) {
         summaryBar.innerHTML = `
           <div class="summary-banner-card">
-            <div>
-              <div style="font-size:11px; color:var(--hint-color); font-weight:700; text-transform:uppercase;">Mas'ul xodim:</div>
-              <div style="font-size:14.5px; font-weight:700; color:var(--text-color); margin-top:2px;">
-                <i class="fi fi-rr-id-badge" style="color:var(--accent-color)"></i> ${escHtml(currentUser.tabelFio || currentUser.fio)}
+            <div class="summary-top-row">
+              <div>
+                <div style="font-size:11px; color:var(--hint-color); font-weight:700; text-transform:uppercase;">Mas'ul xodim:</div>
+                <div style="font-size:14.5px; font-weight:700; color:var(--text-color); margin-top:2px;">
+                  <i class="fi fi-rr-id-badge" style="color:var(--accent-color)"></i> ${escHtml(currentUser.tabelFio || currentUser.fio)}
+                </div>
+              </div>
+              <div class="norma-pill" style="font-size:12.5px; padding:5px 10px;">
+                Jami keksalar: ${filtered.length} ta
               </div>
             </div>
-            <div class="norma-pill" style="font-size:12.5px; padding:5px 10px;">
-              Jami keksalar: ${filtered.length} ta
+            <div class="summary-stats-row">
+              <span class="norma-pill">
+                <i class="fi fi-rr-calendar"></i> Jami: ${formatCleanNum(totalNormDays)} kun (Grafikda: ${totalScheduledDays}/${formatCleanNum(totalNormDays)} kun)
+              </span>
+              <span class="norma-pill">
+                <i class="fi fi-rr-time-fast"></i> Bir kunda: ${formatCleanNum(totalDailyNormHours)} soat
+              </span>
+              <span class="norma-pill green-stat">
+                <i class="fi fi-rr-clock"></i> 1 haftalik ko'riklar soati: ${formatCleanNum(totalWeeklyNormHours)} soat (Grafikda: ${formatCleanNum(totalWeeklyScheduledHours)} soat)
+              </span>
+            </div>
+          </div>
+        `;
+      } else if (isAdminUser && filtered.length > 0) {
+        summaryBar.innerHTML = `
+          <div class="summary-banner-card">
+            <div class="summary-stats-row" style="border-top:none; padding-top:0;">
+              <span class="norma-pill">Jami keksalar: ${filtered.length} ta</span>
+              <span class="norma-pill"><i class="fi fi-rr-calendar"></i> Jami: ${formatCleanNum(totalNormDays)} kun (${totalScheduledDays}/${formatCleanNum(totalNormDays)})</span>
+              <span class="norma-pill"><i class="fi fi-rr-time-fast"></i> Bir kunda: ${formatCleanNum(totalDailyNormHours)} soat</span>
+              <span class="norma-pill green-stat"><i class="fi fi-rr-clock"></i> 1 haftalik soat: ${formatCleanNum(totalWeeklyNormHours)} soat (Grafikda: ${formatCleanNum(totalWeeklyScheduledHours)} soat)</span>
             </div>
           </div>
         `;
@@ -1316,7 +1374,7 @@
             }
           }
         });
-        const cleanHoursStr = Number.isInteger(dayHoursSum) ? dayHoursSum : dayHoursSum.toFixed(1);
+        const cleanHoursStr = formatCleanNum(dayHoursSum);
 
         html += `
           <div class="day-group-header ${isToday ? 'today-header' : ''}" ${isToday ? 'id="today-day-section"' : ''}>
