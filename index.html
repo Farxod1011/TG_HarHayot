@@ -154,7 +154,7 @@
     .tab-btn.has-requests.active { background: var(--danger-text); color: #ffffff; border-color: var(--danger-text); }
     .badge { background: var(--time-pill-bg); color: var(--accent-color); border-radius: 12px; padding: 2px 7px; font-size: 11px; font-weight: 700; }
 
-    .tab-content { display: none; padding: 14px; min-height: calc(100vh - 105px); animation: fadeTab 0.2s ease; }
+    .tab-content { display: none; padding: 12px 12px 16px; min-height: calc(100vh - 105px); animation: fadeTab 0.2s ease; }
     .tab-content.active { display: block; }
     @keyframes fadeTab { from { opacity: 0.4; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -170,22 +170,46 @@
     .submit-btn { width: 100%; padding: 13px; border-radius: 10px; background: var(--accent-color); color: var(--active-btn-text); border: 1px solid var(--accent-color); font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 10px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
     .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .summary-banner-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; }
+    .summary-banner-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 11px 13px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 7px; }
     .summary-top-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
     .summary-stats-row { display: flex; flex-wrap: wrap; gap: 6px; }
 
-    .sticky-search-container { position: sticky; top: 53px; z-index: 85; background: var(--bg-color); padding: 4px 0 10px; }
+    .sticky-search-container { position: sticky; top: 53px; z-index: 85; background: var(--bg-color); padding: 4px 0 8px; }
     .search-filter-bar { position: relative; display: flex; align-items: center; }
-    .search-filter-bar input { padding: 10px 38px 10px 12px; font-size: 13.5px; width: 100%; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); }
+    .search-filter-bar input { padding: 9px 38px 9px 12px; font-size: 13.5px; width: 100%; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); }
     .search-clear-btn { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: var(--time-pill-bg); border: 1px solid var(--border-color); color: var(--hint-color); display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 11px; }
     .search-clear-btn.visible { display: inline-flex; }
     .search-clear-btn:active { background: var(--danger-text); color: #fff; border-color: var(--danger-text); }
 
-    /* MODERN JADVAL DIZAYNI (STICKY RO'YXAT VA SHAFFOF CHAP USTUN) */
-    .matrix-card-shell { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); }
-    .matrix-scroll-wrap { width: 100%; max-height: calc(100vh - 175px); overflow: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; position: relative; }
+    /* ==============================================================
+       MODERN JADVAL DIZAYNI (7 TA QATOR SIG'ADIGAN KATTA RAMKA)
+       ============================================================== */
+    .matrix-card-shell {
+      background: var(--card-bg); border: 1px solid var(--border-color);
+      border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    /* Asistentda 7 kun to'liq sig'adi; Adminda 7 ta qator sig'adigan katta balandlik */
+    .matrix-scroll-wrap {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      position: relative;
+    }
+    .matrix-scroll-wrap.admin-matrix-scroll {
+      max-height: calc(100vh - 108px);
+      max-height: calc(100dvh - 108px);
+      overflow-y: auto;
+      overscroll-behavior-y: auto;
+    }
+
     .matrix-table { width: 100%; border-collapse: separate; border-spacing: 0; min-width: max-content; }
-    .matrix-table th, .matrix-table td { border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 10px 9px; text-align: center; vertical-align: middle; }
+    .matrix-table th, .matrix-table td {
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      padding: 7px 8px; text-align: center; vertical-align: middle;
+    }
     .matrix-table tr:last-child td { border-bottom: none; }
     .matrix-table th:last-child, .matrix-table td:last-child { border-right: none; }
 
@@ -194,15 +218,16 @@
       position: sticky; left: 0; z-index: 15;
       background: var(--sticky-col-bg) !important;
       backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
-      text-align: left !important; min-width: 108px; max-width: 145px;
-      font-weight: 700; font-size: 12.5px; color: var(--text-color);
+      text-align: left !important; min-width: 118px; max-width: 175px;
+      font-weight: 700; font-size: 12px; color: var(--text-color);
     }
     /* Tepa qator (Dushanba, Seshanba...) pastga surilganda joyida qoladi, chap-o'ngga yuradi */
     .matrix-table thead th {
       background: var(--sticky-head-bg);
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       font-weight: 700; font-size: 11.5px; color: var(--text-color);
-      position: sticky; top: 0; z-index: 25; transition: background 0.2s, color 0.2s;
+      position: sticky; top: 0; z-index: 25; padding: 8px 8px;
+      transition: background 0.2s, color 0.2s;
     }
     /* Burchakdagi Asistent / Kun katagi ikkala yo'nalishda ham qotirilgan */
     .matrix-table thead th.matrix-sticky-col {
@@ -215,14 +240,35 @@
     .matrix-table thead th.active-day-filter { background: var(--accent-color) !important; color: var(--active-btn-text) !important; }
     .matrix-table thead th.active-day-filter .day-sub-date { color: var(--active-btn-text) !important; opacity: 0.9 !important; }
 
-    .matrix-col-header-inner { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 92px; max-width: 115px; cursor: pointer; margin: 0 auto; }
-    .matrix-avatar-circle { width: 30px; height: 30px; border-radius: 50%; background: var(--time-pill-bg); color: var(--accent-color); border: 1px solid var(--border-color); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+    .matrix-col-header-inner { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 88px; max-width: 112px; cursor: pointer; margin: 0 auto; }
+    .matrix-avatar-circle { width: 26px; height: 26px; border-radius: 50%; background: var(--time-pill-bg); color: var(--accent-color); border: 1px solid var(--border-color); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800; flex-shrink: 0; }
     .matrix-col-name { font-size: 11px; font-weight: 700; color: var(--text-color); line-height: 1.25; white-space: normal; word-break: break-word; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
+    /* Adminda Asistent Ism va Familiyasi to'liq va tagma-tag (harflar bo'linib tushmaydi) */
     .matrix-emp-row-header { display: flex; align-items: center; gap: 7px; cursor: pointer; }
-    .matrix-emp-row-name { font-size: 12px; font-weight: 700; color: var(--text-color); line-height: 1.25; white-space: normal; word-break: break-word; }
+    .matrix-emp-fullname-stack {
+      display: flex; flex-direction: column; gap: 1px;
+    }
+    .matrix-emp-firstname {
+      font-size: 11.5px; font-weight: 700; color: var(--text-color);
+      line-height: 1.2; white-space: nowrap;
+    }
+    .matrix-emp-lastname {
+      font-size: 11.5px; font-weight: 700; color: var(--text-color);
+      line-height: 1.2; white-space: nowrap;
+    }
+    .matrix-emp-subcount {
+      font-size: 10px; color: var(--hint-color); font-weight: 600;
+      line-height: 1.2; white-space: nowrap; margin-top: 1px;
+    }
 
-    .matrix-time-pill { display: inline-flex; align-items: center; justify-content: center; background: var(--time-pill-bg); color: var(--accent-color); border: 1px solid rgba(30, 142, 142, 0.28); padding: 4px 8px; border-radius: 7px; font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer; margin: 2px 0; }
+    .matrix-time-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--time-pill-bg); color: var(--accent-color);
+      border: 1px solid rgba(30, 142, 142, 0.28);
+      padding: 3px 7px; border-radius: 6px; font-size: 10.5px; font-weight: 700;
+      white-space: nowrap; cursor: pointer; margin: 1.5px 0; line-height: 1.2;
+    }
     .matrix-empty-dash { color: var(--hint-color); opacity: 0.45; font-size: 13px; font-weight: 600; }
 
     .matrix-today-row td { background: rgba(229, 57, 53, 0.05); }
@@ -524,13 +570,32 @@
     let mainSearchQuery = "";
     let selectedAdminDayFilter = null;
 
-    /* YONGA SLAYD (SWIPE) ORQALI KEYINGI MENYUGA O'TISH */
+    /* =========================================================================
+       SVAYP BOSHQARUVI:
+       1) Yonga slayd qilganda menyular almashadi
+       2) Jadval ustida pastga svayp qilinganda avval tepadagi statistika yashirinadi,
+          so'ng jadvalning ichki vertikal svaypi ishga tushadi
+       ========================================================================= */
     let touchStartX = 0;
     let touchStartY = 0;
+    let lastTouchY = 0;
     let ignoreSwipe = false;
     let isTouchInDrawer = false;
     let touchMatrixScrollEl = null;
     let matrixStartScrollLeft = 0;
+    let swipeLockAxis = null; // 'x' yoki 'y'
+
+    function getMatrixHeaderStickyThreshold() {
+      const searchWrap = document.getElementById('matrixStickySearchWrap');
+      const targetEl = (searchWrap && searchWrap.style.display !== 'none')
+        ? searchWrap
+        : document.getElementById('matrixTableContainer');
+      if (!targetEl) return 0;
+      const rect = targetEl.getBoundingClientRect();
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const tabBarHeight = 53;
+      return Math.max(0, Math.round(currentScroll + rect.top - tabBarHeight));
+    }
 
     document.addEventListener('touchstart', function(e) {
       const mainScreen = document.getElementById('screen-main');
@@ -542,6 +607,9 @@
       touchMatrixScrollEl = e.target.closest('.matrix-scroll-wrap');
       if (touchMatrixScrollEl) matrixStartScrollLeft = touchMatrixScrollEl.scrollLeft;
 
+      swipeLockAxis = null;
+      lastTouchY = e.changedTouches[0].clientY;
+
       if (e.target.closest('.tab-bar') || e.target.closest('.custom-modal') || ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(e.target.tagName)) {
         ignoreSwipe = true;
         return;
@@ -550,6 +618,64 @@
       touchStartX = e.changedTouches[0].clientX;
       touchStartY = e.changedTouches[0].clientY;
     }, { passive: true });
+
+    /* Jadval ustida pastga svayp qilinganda avval tepadagi ma'lumotlarni yashirib, keyin jadval ichini aylantirish */
+    document.addEventListener('touchmove', function(e) {
+      if (!touchMatrixScrollEl || !touchMatrixScrollEl.classList.contains('admin-matrix-scroll')) return;
+      const curX = e.changedTouches[0].clientX;
+      const curY = e.changedTouches[0].clientY;
+      const totalDx = Math.abs(curX - touchStartX);
+      const totalDy = Math.abs(curY - touchStartY);
+
+      if (!swipeLockAxis && (totalDx > 6 || totalDy > 6)) {
+        swipeLockAxis = totalDy >= totalDx ? 'y' : 'x';
+      }
+      if (swipeLockAxis !== 'y') {
+        lastTouchY = curY;
+        return;
+      }
+
+      const deltaY = lastTouchY - curY; // > 0 bo'lsa pastga ko'rish (barmoq tepaga), < 0 bo'lsa tepaga qaytish
+      lastTouchY = curY;
+
+      const winScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const maxHeaderScroll = getMatrixHeaderStickyThreshold();
+
+      /* 1) Pastga tushayotganda: tepadagi ma'lumotlar hali yashirinmagan bo'lsa, avval sahifani tepaga suramiz */
+      if (deltaY > 0 && winScroll < maxHeaderScroll - 1) {
+        if (e.cancelable) e.preventDefault();
+        const step = Math.min(deltaY, maxHeaderScroll - winScroll);
+        window.scrollBy(0, step);
+        const leftover = deltaY - step;
+        if (leftover > 0) {
+          touchMatrixScrollEl.scrollTop += leftover;
+        }
+        return;
+      }
+
+      /* 2) Tepaga qaytayotganda: jadval ichki skrolli 0 ga yetgan bo'lsa, tepadagi ma'lumotlarni qayta chiqaramiz */
+      if (deltaY < 0 && touchMatrixScrollEl.scrollTop <= 0 && winScroll > 0) {
+        if (e.cancelable) e.preventDefault();
+        window.scrollBy(0, deltaY);
+      }
+    }, { passive: false });
+
+    /* Kompyuter sichqonchasi (wheel) uchun ham xuddi shu ketma-ketlik */
+    document.addEventListener('wheel', function(e) {
+      const wrap = e.target.closest('.matrix-scroll-wrap.admin-matrix-scroll');
+      if (!wrap || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+
+      const winScroll = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const maxHeaderScroll = getMatrixHeaderStickyThreshold();
+
+      if (e.deltaY > 0 && winScroll < maxHeaderScroll - 1) {
+        e.preventDefault();
+        window.scrollBy(0, Math.min(e.deltaY, maxHeaderScroll - winScroll));
+      } else if (e.deltaY < 0 && wrap.scrollTop <= 0 && winScroll > 0) {
+        e.preventDefault();
+        window.scrollBy(0, e.deltaY);
+      }
+    }, { passive: false });
 
     document.addEventListener('touchend', function(e) {
       if (ignoreSwipe) return;
@@ -617,6 +743,16 @@
       if (!parts.length) return "-";
       if (parts.length === 1) return parts[0];
       return `${parts[1].charAt(0).toUpperCase()}. ${toTitleCaseWord(parts[0])}`;
+    }
+
+    /* Admin jadvali uchun Asistentning to'liq Ismi va Familiyasini 2 qatorga ajratib olish */
+    function extractFullFirstAndLastName(fullName) {
+      const parts = String(fullName || "").trim().split(/\s+/).filter(Boolean);
+      if (!parts.length) return { firstName: "-", lastName: "" };
+      if (parts.length === 1) return { firstName: toTitleCaseWord(parts[0]), lastName: "" };
+      const lastName = toTitleCaseWord(parts[0]);
+      const firstName = toTitleCaseWord(parts[1]);
+      return { firstName, lastName };
     }
 
     function getAvatarLetters(fullName) {
@@ -1144,7 +1280,7 @@
 
       const weekInfo = getCurrentWeekDatesInfo();
 
-      /* A) XODIM JADVALI */
+      /* A) XODIM JADVALI (7 kun bitta ramkada to'liq ko'rinadi) */
       if (!isAdminUser) {
         let theadCols = `<th class="matrix-sticky-col">Kun</th>`;
         filtered.forEach((r, rIdx) => {
@@ -1182,7 +1318,7 @@
         return;
       }
 
-      /* B) ADMIN JADVALI (Hafta kuni bosilganda bo'sh qatorlarni yashiradi va kun katagi tugma rangida yonadi) */
+      /* B) ADMIN JADVALI (7 ta qator sig'adigan katta ramka, Asistent Ismi va Familiyasi to'liq hamda tagma-tag) */
       const empMap = new Map();
       filtered.forEach(r => {
         const key = r.normHodimFio || normStrJS(r.hodimFio);
@@ -1226,13 +1362,15 @@
         tbodyHtml = `<tr><td colspan="8" style="padding:30px 14px; text-align:center; color:var(--hint-color); font-weight:600;">${selDayName ? `«${escHtml(selDayName)}» kunida belgilangan ko'riklar yo'q. Filtrni yechish uchun ustiga yana bosing.` : "Ma'lumot topilmadi"}</td></tr>`;
       } else {
         empEntries.forEach((emp, eIdx) => {
+          const fullParts = extractFullFirstAndLastName(emp.hodimFio);
           let cellsHtml = `
             <td class="matrix-sticky-col" onclick="openAdminEmpDayModal(${eIdx}, -1)">
               <div class="matrix-emp-row-header">
-                <span class="matrix-avatar-circle" style="width:26px; height:26px; font-size:11px;">${escHtml(getAvatarLetters(emp.hodimFio))}</span>
-                <div>
-                  <div class="matrix-emp-row-name">${escHtml(formatShortPersonLabel(emp.hodimFio))}</div>
-                  <div style="font-size:10px; color:var(--hint-color); font-weight:600;">Keksalar: ${emp.records.length} ta</div>
+                <span class="matrix-avatar-circle">${escHtml(getAvatarLetters(emp.hodimFio))}</span>
+                <div class="matrix-emp-fullname-stack">
+                  <div class="matrix-emp-firstname">${escHtml(fullParts.firstName)}</div>
+                  ${fullParts.lastName ? `<div class="matrix-emp-lastname">${escHtml(fullParts.lastName)}</div>` : ''}
+                  <div class="matrix-emp-subcount">Keksalar: ${emp.records.length} ta</div>
                 </div>
               </div>
             </td>
@@ -1251,7 +1389,7 @@
         });
       }
 
-      container.innerHTML = `<div class="matrix-card-shell"><div class="matrix-scroll-wrap"><table class="matrix-table"><thead><tr>${theadHtml}</tr></thead><tbody>${tbodyHtml}</tbody></table></div></div>`;
+      container.innerHTML = `<div class="matrix-card-shell"><div class="matrix-scroll-wrap admin-matrix-scroll"><table class="matrix-table"><thead><tr>${theadHtml}</tr></thead><tbody>${tbodyHtml}</tbody></table></div></div>`;
     }
 
     function openKeksaDetailModal(filteredIdx) {
