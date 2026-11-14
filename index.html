@@ -1546,8 +1546,8 @@
     /* Mas'ul xodim va Admin uchun umumiy statistika bloki:
        1 haftalik soat yonida oy oxirigacha bo'lgan Grafik soat (BO+DP), Fakt soat (BP+DQ) va Bajarildi ✅ (BR+DS) */
     function buildSummaryBannerHtml(filteredRecords) {
-      let totalNormDays = 0, totalScheduledDays = 0, totalDailyNormHours = 0, totalWeeklyNormHours = 0, totalWeeklyScheduledHours = 0;
-      let totalMonthGrafikSoat = 0, totalMonthFaktSoat = 0, totalMonthBajarildi = 0;
+      let totalNormDays = 0, totalScheduledDays = 0, totalDailyNormHours = 0;
+      let sumGrafikMonth = 0, sumFaktMonth = 0, sumBajarildiMonth = 0;
 
       filteredRecords.forEach(r => {
         const wDays = extractNumberFromText(r.birHaftada);
@@ -1556,12 +1556,10 @@
         totalNormDays += wDays;
         totalScheduledDays += schedCnt;
         totalDailyNormHours += dHours;
-        totalWeeklyNormHours += (wDays * dHours);
-        totalWeeklyScheduledHours += (schedCnt * dHours);
 
-        totalMonthGrafikSoat += Number(r.grafikMonthTotal || 0);
-        totalMonthFaktSoat += Number(r.faktMonthTotal || 0);
-        totalMonthBajarildi += Number(r.bajarildiMonthTotal || 0);
+        sumGrafikMonth += Number(r.grafikMonthTotal || 0);
+        sumFaktMonth += Number(r.faktMonthTotal !== undefined ? r.faktMonthTotal : (r.faktUpToToday || 0));
+        sumBajarildiMonth += Number(r.bajarildiMonthTotal !== undefined ? r.bajarildiMonthTotal : (r.bajarildiUpToToday || 0));
       });
 
       if (!isAdminUser && currentUser) {
@@ -1577,10 +1575,9 @@
             </div>
             <div class="summary-stats-row">
               <span class="norma-pill"><i class="fi fi-rr-users"></i> Jami keksalar: ${filteredRecords.length} ta</span>
-              <span class="norma-pill"><i class="fi fi-rr-clock"></i> 1 haftalik ko'riklar soati: ${formatCleanNum(totalWeeklyNormHours)} soat (Grafikda: ${formatCleanNum(totalWeeklyScheduledHours)} soat)</span>
-              <span class="norma-pill"><i class="fi fi-rr-calendar-clock"></i> Grafik soat: ${formatCleanNum(totalMonthGrafikSoat)} soat</span>
-              <span class="norma-pill"><i class="fi fi-rr-time-check"></i> Fakt soat: ${formatCleanNum(totalMonthFaktSoat)} soat</span>
-              <span class="norma-pill">✅ Bajarildi: ${formatCleanNum(totalMonthBajarildi)} ta</span>
+              <span class="norma-pill"><i class="fi fi-rr-calendar-clock"></i> Grafik soat: ${formatCleanNum(sumGrafikMonth)} soat</span>
+              <span class="norma-pill"><i class="fi fi-rr-time-check"></i> Fakt soat: ${formatCleanNum(sumFaktMonth)} soat</span>
+              <span class="norma-pill">✅ Bajarildi: ${formatCleanNum(sumBajarildiMonth)} ta</span>
             </div>
           </div>
         `;
@@ -1591,17 +1588,16 @@
               <span class="norma-pill"><i class="fi fi-rr-users"></i> Jami keksalar: ${filteredRecords.length} ta</span>
               <span class="norma-pill"><i class="fi fi-rr-calendar"></i> Jami: ${formatCleanNum(totalNormDays)} kun (Grafikda: ${totalScheduledDays}/${formatCleanNum(totalNormDays)} kun)</span>
               <span class="norma-pill"><i class="fi fi-rr-time-fast"></i> Bir kunda: ${formatCleanNum(totalDailyNormHours)} soat</span>
-              <span class="norma-pill"><i class="fi fi-rr-clock"></i> 1 haftalik ko'riklar soati: ${formatCleanNum(totalWeeklyNormHours)} soat (Grafikda: ${formatCleanNum(totalWeeklyScheduledHours)} soat)</span>
-              <span class="norma-pill"><i class="fi fi-rr-calendar-clock"></i> Grafik soat: ${formatCleanNum(totalMonthGrafikSoat)} soat</span>
-              <span class="norma-pill"><i class="fi fi-rr-time-check"></i> Fakt soat: ${formatCleanNum(totalMonthFaktSoat)} soat</span>
-              <span class="norma-pill">✅ Bajarildi: ${formatCleanNum(totalMonthBajarildi)} ta</span>
+              <span class="norma-pill"><i class="fi fi-rr-calendar-clock"></i> Grafik soat: ${formatCleanNum(sumGrafikMonth)} soat</span>
+              <span class="norma-pill"><i class="fi fi-rr-time-check"></i> Fakt soat: ${formatCleanNum(sumFaktMonth)} soat</span>
+              <span class="norma-pill">✅ Bajarildi: ${formatCleanNum(sumBajarildiMonth)} ta</span>
             </div>
           </div>
         `;
       }
       return "";
     }
-
+    
     function filterRecordsByQuery(list) {
       const query = normStrJS(mainSearchQuery);
       return list.filter(r => {
