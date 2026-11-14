@@ -1129,10 +1129,11 @@
       const targetContent = document.getElementById(tabId);
       if (targetContent) targetContent.classList.add('active');
 
+      /* Yangi menyuga o'tilganda skroll va polzunokni eng boshiga (A harfiga) qaytarish */
       if (!isAutoRefresh || isSwitchingTab) {
         window.scrollTo(0, 0);
-        const adminWrap = document.querySelector('#matrixTableContainer .admin-matrix-scroll');
-        if (adminWrap) adminWrap.scrollTop = 0;
+        const adminScrollWrap = document.querySelector('#matrixTableContainer .admin-matrix-scroll');
+        if (adminScrollWrap) adminScrollWrap.scrollTop = 0;
       }
 
       setTimeout(() => updateAlphaScrollbarUI(false), 60);
@@ -1871,7 +1872,10 @@
       const badgeEl = document.getElementById('b-keksalar');
       if (!container) return;
 
-      const filtered = sortAlphaAsc(filterRecordsByQuery(allRecords), r => r.keksaFio);
+      const filtered = filterRecordsByQuery(allRecords).slice();
+      if (filtered.length >= 2) {
+        filtered.sort((a, b) => String(a.keksaFio).localeCompare(String(b.keksaFio), 'uz'));
+      }
 
       if (badgeEl) badgeEl.innerText = filtered.length;
       if (summaryBar) summaryBar.innerHTML = buildSummaryBannerHtml(filtered);
@@ -1892,12 +1896,7 @@
 
         let headerScheduleHtml = "", bodyScheduleHtml = "";
         if (scheduledCount > 0) {
-          const itemsMarkup = r.scheduleDays.map(d => `
-            <div class="schedule-day-item">
-              <span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(formatDayTimeDashJS(d.dayName, d.rawTime))}</span>
-              ${d.bajarildi ? `<span class="live-visit-badge done">✅ Bajarildi${d.faktSoat ? ' (' + formatCleanNum(d.faktSoat) + ' soat)' : ''}</span>` : ''}
-            </div>
-          `).join('');
+          const itemsMarkup = r.scheduleDays.map(d => `<div class="schedule-day-item"><span><i class="fi fi-rr-clock-three" style="color:var(--accent-color); margin-right:6px;"></i>${escHtml(formatDayTimeDashJS(d.dayName, d.rawTime))}</span></div>`).join('');
           headerScheduleHtml = `<div class="schedule-list-box header-schedule-box">${itemsMarkup}</div>`;
           bodyScheduleHtml = `<div class="schedule-list-box">${itemsMarkup}</div>`;
         } else {
@@ -1941,7 +1940,6 @@
               <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-calendar-clock"></i> Grafik soat (oy oxirigacha):</span> <span class="detail-val">${formatCleanNum(r.grafikMonthTotal || 0)} soat</span></div>
               <div class="detail-row"><span class="detail-label"><i class="fi fi-rr-time-check"></i> Fakt soat (bugungacha):</span> <span class="detail-val">${formatCleanNum(r.faktUpToToday || 0)} soat</span></div>
               <div class="detail-row"><span class="detail-label">✅ Bajarildi (bugungacha):</span> <span class="detail-val">${formatCleanNum(r.bajarildiUpToToday || 0)} ta</span></div>
-              <div class="detail-row" style="margin-top:8px;"><span class="detail-label"><i class="fi fi-rr-calendar-clock"></i> Haftalik grafik:</span>
               <div class="detail-row" style="margin-top:8px;"><span class="detail-label"><i class="fi fi-rr-calendar-clock"></i> Haftalik grafik:</span>${bodyScheduleHtml}</div>
             </div>
           </div>
