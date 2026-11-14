@@ -732,7 +732,6 @@
 
       thumb.style.top = `${Math.round(thumbTop)}px`;
 
-      /* Hozirgi ko'rinib turgan qatordagi harfni aniqlash */
       let currentLetter = "A";
       if (info.items && info.items.length > 0) {
         const targetIndex = Math.min(info.items.length - 1, Math.max(0, Math.floor(ratio * info.items.length)));
@@ -1020,7 +1019,6 @@
       return w ? (w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()) : "";
     }
 
-    /* Ism va Familiyani to'liq 2 qatorga ajratib olish (Asistentda Keksalar uchun ham, Adminda Asistentlar uchun ham) */
     function extractFullFirstAndLastName(fullName) {
       const parts = String(fullName || "").trim().split(/\s+/).filter(Boolean);
       if (!parts.length) return { firstName: "-", lastName: "" };
@@ -1124,13 +1122,6 @@
       if (targetContent) targetContent.classList.add('active');
 
       setTimeout(() => updateAlphaScrollbarUI(false), 60);
-
-      if (tabId === 'tab-days' && !isAutoRefresh) {
-        setTimeout(() => {
-          const todayEl = document.getElementById('today-day-section');
-          if (todayEl) todayEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 120);
-      }
     }
 
     function toggleTopDrawer() {
@@ -1138,7 +1129,6 @@
       document.getElementById('dotsMenuBtn').classList.toggle('open');
     }
 
-    /* Asosiy menyulardagi qidiruv oynalarini sinxron boshqarish */
     function onMainSearchInput(inputEl) {
       mainSearchQuery = inputEl.value;
       ['searchInput', 'matrixSearchInput', 'daysSearchInput'].forEach(id => {
@@ -1414,7 +1404,6 @@
         if (el) el.placeholder = placeholderTxt;
       });
 
-      /* Qidiruv maydoni faqatgina shu menyuda 15 tadan ko'p ma'lumot bo'lganda ko'rinadi */
       const totalKeksalar = allRecords.length;
       const uniqueHodimCount = new Set(allRecords.map(r => r.normHodimFio || normStrJS(r.hodimFio))).size;
       let totalScheduledVisits = 0;
@@ -1613,11 +1602,10 @@
       }
 
       const weekInfo = getCurrentWeekDatesInfo();
+      /* Bugungi kundan boshlanuvchi 7 kun ketma-ketligi (Asistentda ham, Adminda ham) */
+      const orderedDayIndices = Array.from({ length: 7 }, (_, i) => (weekInfo.todayDayIdx + i) % 7);
 
-      /* A) ASISTENT JADVALI:
-            1) Bugungi kun har doim jadvalning eng tepasida (1-qatorda), undan keyin qolgan 6 kun
-            2) Keksalar ustunida yumaloqchasiz to'liq Ism va Familiya tagma-tag + ostida seriy rangda "4 kun 3 soat"
-            3) Chapdagi hafta kuni ustiga bosilganda shu kundagi barcha qabullari alohida oynada chiqadi */
+      /* A) ASISTENT JADVALI */
       if (!isAdminUser) {
         let theadCols = `<th class="matrix-sticky-col">Kun</th>`;
         filtered.forEach((r, rIdx) => {
@@ -1633,9 +1621,6 @@
             </th>
           `;
         });
-
-        /* Bugungi kundan boshlab 7 kun ketma-ketligi */
-        const orderedDayIndices = Array.from({ length: 7 }, (_, i) => (weekInfo.todayDayIdx + i) % 7);
 
         let tbodyRows = "";
         orderedDayIndices.forEach((dIdx, offsetIdx) => {
@@ -1664,7 +1649,7 @@
         return;
       }
 
-      /* B) ADMIN JADVALI */
+      /* B) ADMIN JADVALI (Bugungi kun 1-ustunda turadi, qolgan 6 kun undan keyin ketma-ket keladi) */
       const empMap = new Map();
       filtered.forEach(r => {
         const key = r.normHodimFio || normStrJS(r.hodimFio);
@@ -1691,13 +1676,15 @@
       window._adminMatrixEmpEntries = empEntries;
 
       let theadHtml = `<th class="matrix-sticky-col" onclick="if(selectedAdminDayFilter!==null){toggleAdminDayFilter(selectedAdminDayFilter);}" style="cursor:pointer;">Asistent</th>`;
-      DAY_NAMES.forEach((dName, dIdx) => {
-        const isToday = (dIdx === weekInfo.todayDayIdx);
+      orderedDayIndices.forEach((dIdx, offsetIdx) => {
+        const dName = DAY_NAMES[dIdx];
+        const isToday = (offsetIdx === 0);
         const isSelectedDay = (selectedAdminDayFilter === dIdx);
+        const dayDateStr = weekInfo.upcomingDatesByOffset[offsetIdx] || weekInfo.datesByIdx[dIdx] || '';
         theadHtml += `
           <th class="matrix-day-filter-th ${isToday ? 'matrix-today-col-head' : ''} ${isSelectedDay ? 'active-day-filter' : ''}" style="min-width:105px;" onclick="toggleAdminDayFilter(${dIdx})">
             <div>${escHtml(dName)}</div>
-            <div class="day-sub-date" style="font-size:10px; font-weight:600; opacity:0.8;">${escHtml(weekInfo.datesByIdx[dIdx] || '')}</div>
+            <div class="day-sub-date" style="font-size:10px; font-weight:600; opacity:0.8;">${escHtml(dayDateStr)}</div>
           </th>
         `;
       });
@@ -1722,8 +1709,8 @@
               </div>
             </td>
           `;
-          for (let dIdx = 0; dIdx < 7; dIdx++) {
-            const isToday = (dIdx === weekInfo.todayDayIdx);
+          orderedDayIndices.forEach((dIdx, offsetIdx) => {
+            const isToday = (offsetIdx === 0);
             const visits = (emp.byDay[dIdx] || []).slice().sort((a, b) => String(a.rawTime).localeCompare(String(b.rawTime)));
             if (visits.length > 0) {
               const pills = visits.map(v => `<div class="matrix-time-pill" onclick="openAdminEmpDayModal(${eIdx}, ${dIdx})">${escHtml(v.rawTime)}</div>`).join('<br>');
@@ -1731,7 +1718,7 @@
             } else {
               cellsHtml += `<td class="${isToday ? 'matrix-today-col' : ''}"><span class="matrix-empty-dash">—</span></td>`;
             }
-          }
+          });
           tbodyHtml += `<tr data-alpha="${escHtml(alphaChar)}">${cellsHtml}</tr>`;
         });
       }
@@ -1739,7 +1726,6 @@
       container.innerHTML = `<div class="matrix-card-shell"><div class="matrix-scroll-wrap admin-matrix-scroll" onscroll="updateAlphaScrollbarUI(true)"><table class="matrix-table"><thead><tr>${theadHtml}</tr></thead><tbody>${tbodyHtml}</tbody></table></div></div>`;
     }
 
-    /* Asistent chap tarafdagi hafta kuni ustiga bosganda shu kundagi barcha qabullarini alohida oynada ko'rsatish */
     function openAssistantDayModal(dayIdx, dayDateStr) {
       const dayName = DAY_NAMES[dayIdx] || "";
       const visits = [];
@@ -1757,11 +1743,7 @@
         }
       });
 
-      visits.sort((a, b) => {
-        const rA = parseTimeRangeMinutes(a.rawTime), rB = parseTimeRangeMinutes(b.rawTime);
-        if (rA && rB && rA.startMin !== rB.startMin) return rA.startMin - rB.startMin;
-        return String(a.keksaFio).localeCompare(String(b.keksaFio), 'uz');
-      });
+      visits.sort((a, b) => String(a.keksaFio).localeCompare(String(b.keksaFio), 'uz'));
 
       document.getElementById('cellDetailTitle').innerHTML = `
         <i class="fi fi-rr-calendar-day" style="color:var(--accent-color)"></i>
@@ -1836,16 +1818,13 @@
       document.getElementById('cellDetailModal').classList.add('show');
     }
 
-    /* ==============================================================
-       KEKSALAR MENYUSI (ALFAVIT BO'YICHA A-Z SARALANGAN, ASISTENTDA FIRMA NOMISIZ)
-       ============================================================== */
+    /* KEKSALAR MENYUSI (ALFAVIT BO'YICHA A-Z SARALANGAN, ASISTENTDA FIRMA NOMISIZ) */
     function renderScheduleCards() {
       const container = document.getElementById('list-schedule');
       const summaryBar = document.getElementById('employeeSummaryBar');
       const badgeEl = document.getElementById('b-keksalar');
       if (!container) return;
 
-      /* Keksalar F.I.Osi bo'yicha alfavit tartibida (A, B, ...) saralash */
       const filtered = filterRecordsByQuery(allRecords).slice().sort((a, b) => String(a.keksaFio).localeCompare(String(b.keksaFio), 'uz'));
 
       if (badgeEl) badgeEl.innerText = filtered.length;
@@ -1951,9 +1930,7 @@
       return { startMin: parseInt(m1[1], 10) * 60 + parseInt(m1[2], 10), endMin: parseInt(m2[1], 10) * 60 + parseInt(m2[2], 10) };
     }
 
-    /* ==============================================================
-       HAFTA KUNLARI MENYUSI (HAR BIR KUN TAGIDA KEKSALAR ALFAVIT BO'YICHA A-Z)
-       ============================================================== */
+    /* HAFTA KUNLARI MENYUSI (BUGUNGI KUNDAN BOSHLANADI, KEKSALAR HAR KUN TAGIDA ALFAVIT BO'YICHA A-Z) */
     function renderByDaysView() {
       const container = document.getElementById('list-by-days');
       if (!container) return;
@@ -1961,6 +1938,7 @@
       const dayNamesUpper = ["DUSHANBA", "SESHANBA", "CHORSHANBA", "PAYSHANBA", "JUMA", "SHANBA", "YAKSHANBA"];
       const byDay = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
       const weekInfo = getCurrentWeekDatesInfo();
+      const orderedDayIndices = Array.from({ length: 7 }, (_, i) => (weekInfo.todayDayIdx + i) % 7);
       const filtered = filterRecordsByQuery(allRecords);
 
       filtered.forEach(r => {
@@ -1976,12 +1954,14 @@
       });
 
       let html = "", totalScheduled = 0;
-      dayNamesUpper.forEach((dName, dIdx) => {
+      orderedDayIndices.forEach((dIdx, offsetIdx) => {
+        const dName = dayNamesUpper[dIdx];
         const items = byDay[dIdx] || [];
         if (!items.length) return;
         totalScheduled += items.length;
 
-        const isToday = (dIdx === weekInfo.todayDayIdx);
+        const isToday = (offsetIdx === 0);
+        const dayDateStr = weekInfo.upcomingDatesByOffset[offsetIdx] || weekInfo.datesByIdx[dIdx] || '';
 
         /* Har bir kun tagidagi keksalar familiyasi alfavit bo'yicha (A, B, ...) saralanadi */
         items.sort((a, b) => String(a.keksaFio).localeCompare(String(b.keksaFio), 'uz'));
@@ -2000,7 +1980,7 @@
           <div class="day-group-header ${isToday ? 'today-header' : ''}" ${isToday ? 'id="today-day-section"' : ''}>
             <div class="day-header-left">
               <span class="day-title-main"><i class="fi fi-rr-calendar-day"></i><span>${dName} (${items.length}-ta)</span></span>
-              <span class="day-title-date">${escHtml(weekInfo.datesByIdx[dIdx] || '')}</span>
+              <span class="day-title-date">${escHtml(dayDateStr)}</span>
             </div>
             ${dayHoursSum > 0 ? `<span class="day-total-hours"><i class="fi fi-rr-clock"></i> Jami: ${formatCleanNum(dayHoursSum)} soat</span>` : ''}
           </div>
