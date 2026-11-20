@@ -1234,9 +1234,37 @@
       return null;
     }
 
+    function getInitialUz(word) {
+      const w = String(word || "").trim();
+      if (!w) return "";
+      const up = w.toUpperCase();
+      if (up.startsWith("SH")) return "Sh";
+      if (up.startsWith("CH")) return "Ch";
+      if (/^(O'|O‘|O`|Oʻ|Oʼ)/.test(up)) return "O'";
+      if (/^(G'|G‘|G`|Gʻ|Gʼ)/.test(up)) return "G'";
+      return up.charAt(0);
+    }
+
+    function formatShortFio(fullName) {
+      const parts = String(fullName || "").trim().split(/\s+/).filter(Boolean);
+      if (!parts.length) return "";
+      if (parts.length === 1) return parts[0];
+      const familiya = parts[0];
+      const ismInit = getInitialUz(parts[1]);
+      if (parts.length === 2) return `${familiya} ${ismInit}.`;
+      const otaInit = getInitialUz(parts[2]);
+      return `${familiya} ${ismInit}.${otaInit}`;
+    }
+
     function populateHodimDatalist() {
       const dl = document.getElementById('hodimFioList');
-      if (dl) dl.innerHTML = hodimlarRefList.map(h => `<option value="${escHtml(h.fio)}">`).join('');
+      if (!dl) return;
+      const shortNames = Array.from(new Set(
+        hodimlarRefList
+          .map(h => formatShortFio(h.fio))
+          .filter(Boolean)
+      )).sort((a, b) => a.localeCompare(b, 'uz'));
+      dl.innerHTML = shortNames.map(name => `<option value="${escHtml(name)}">`).join('');
     }
 
     function initApp(switchToTabId) {
@@ -1344,17 +1372,21 @@
       if (!validPhone) { showNotice("Telefon raqami noto'g'ri!\nMisol: 998901234567 yoki 901234567"); return; }
 
       const fioNorm = normStrJS(rawFio);
-      const matchedByFio = hodimlarRefList.find(h => normStrJS(h.fio) === fioNorm);
-      const matchedByJshir = hodimlarRefList.find(h => h.jshir && String(h.jshir) === rawJshir);
+      const matchesFio = (h) =>
+        normStrJS(h.fio) === fioNorm ||
+        normStrJS(formatShortFio(h.fio)) === fioNorm;
 
-      if ((!matchedByFio && !matchedByJshir) ||
-          (matchedByFio && matchedByFio.jshir && String(matchedByFio.jshir) !== rawJshir) ||
-          (matchedByJshir && normStrJS(matchedByJshir.fio) !== fioNorm)) {
-        showNotice("JSHIR noto'g'ri kiritildi!");
-        return;
+      const matchedByJshir = hodimlarRefList.find(h => h.jshir && String(h.jshir) === rawJshir);
+      const matchedByFio = hodimlarRefList.find(h => matchesFio(h));
+
+      if (!matchedByJshir || !matchesFio(matchedByJshir)) {
+        if (!(matchedByFio && !matchedByFio.jshir)) {
+          showNotice("JSHIR noto'g'ri kiritildi!");
+          return;
+        }
       }
 
-      const matchedHodim = matchedByFio || matchedByJshir;
+      const matchedHodim = matchedByJshir || matchedByFio;
       const finalFio = matchedHodim.fio;
       const finalJshir = matchedHodim.jshir || rawJshir;
 
